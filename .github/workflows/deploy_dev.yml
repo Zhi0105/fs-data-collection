@@ -4,19 +4,18 @@ on:
   push:
     branches:
       - development
-      - production
 
 jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@development
       - name: Create release directory and copy analytics file
         run: |
             cd ../
             mkdir release
-            cp $GITHUB_WORKSPACE/dist/fs.js release/fs.js
+            cp $GITHUB_WORKSPACE/fs.js release/fs.js
             
-
       - uses: shallwefootball/s3-upload-action@master
         name: Upload to S3 Bucket
         with:
