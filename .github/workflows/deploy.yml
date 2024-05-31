@@ -14,7 +14,7 @@ jobs:
         run: |
             cd ../
             mkdir release
-            cp $GITHUB_WORKSPACE/fs.js release/fs.js
+            cp $GITHUB_WORKSPACE/dist/fs.js release/fs.js
             
 
       - uses: shallwefootball/s3-upload-action@master
