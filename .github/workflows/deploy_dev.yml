@@ -1,0 +1,30 @@
+name: Upload to S3
+
+on:
+  push:
+    branches:
+      - development
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: 'development'
+
+      - name: Create release directory and copy analytics file
+        run: |
+            cd ../
+            mkdir release/
+            cp $GITHUB_WORKSPACE/fs.js release/fs.js
+            
+      - uses: shallwefootball/s3-upload-action@master
+        name: Upload to S3 Bucket
+        with:
+          aws_key_id: ${{ secrets.AWS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws_bucket: ${{ secrets.AWS_BUCKET }}
+          source_dir: "../release"
+          destination_dir: "frontend/js"
