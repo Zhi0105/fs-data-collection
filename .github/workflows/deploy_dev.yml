@@ -9,7 +9,11 @@ jobs:
   upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@development
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: 'development'
+          
       - name: Create release directory and copy analytics file
         run: |
             cd ../
