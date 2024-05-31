@@ -1,0 +1,1 @@
+[![Upload to S3 (Development)](https://github.com/FlowerStorePH/fs/actions/workflows/deploy_dev.yml/badge.svg?branch=development)](https://github.com/FlowerStorePH/fs/actions/workflows/deploy_dev.yml)
