@@ -37,34 +37,35 @@ const getUserIP =  () => {
 }
 const sendAnalyticsData = (data) => {
 
-    
-
     const url = 'https://bi-tools-dev.flwr.ph/api/data-collection/ph/store'
 
     if(navigator.sendBeacon) {
         const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
         navigator.sendBeacon(url, blob)
-    } 
+    } else {
+        fetch(url, {
+            method: 'POST', 
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                "Access-Control-Allow-Origin": "*", // Allow requests from any origin
+                "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS", // Allow specified methods
+                "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept", // Allow specified headers
+            },
+            KeepAlive :true,
+            body: JSON.stringify(data),  
+        }).then(res => {
+            console.log(res.data)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 
-    // fetch(url, {
-    //     method: 'POST', 
-    //     headers: {
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json',
-    //         "Access-Control-Allow-Origin": "*", // Allow requests from any origin
-    //         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS", // Allow specified methods
-    //         "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept", // Allow specified headers
-    //     },
-    //     KeepAlive :true,
-    //     body: JSON.stringify(data),  
-    // }).then(res => {
-    //     console.log(res.data)
-    // }).catch(err => {
-    //     console.log(err)
-    // })
+
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
     const countdownInterval = setInterval(() => {
@@ -91,8 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 1000);
     // SESSION TIME LIMIT END
-
-
+    
     const session_id = getCookie("session_analytics_id")
     const current_url_array = []
     const current_url = window.location.href 
@@ -113,7 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // HOME PAGE START
 
-    if(!sliced[0]?.length || !sliced?.length) {        
+    if(!sliced[0]?.length || !sliced?.length) {     
+
     // SESSION START
         hashString(getCurrentDate()).then(hashedString => {
             !session_id && setCookie("session_analytics_id", hashedString, 1)
@@ -127,16 +128,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 action_key: 'entrance',
                 page_entrance: 'page',
                 source_id: 1,
-                hub_id: 1,
+                hub_id: getCookie("hub_id") ? getCookie("hub_id")  : 1,
                 user_agent: window.navigator.userAgent,
                 ip_address: data.ip
             }
 
-            console.log(payload)
+            console.log("@hp:", payload)
             sendAnalyticsData(payload)
+
         })
         .catch(error => console.error('Error fetching IP address:', error));
+
+
+        // CHANGE HUB ACTION TYPE START
+
+        const hub = document.getElementsByName("hub_id")
+        const chpayload = {}
+        for (let i = 0; i < hub.length; i+=1) {
+            hub[i].addEventListener('change', (e) => {
+                chpayload.session_id = getCookie("session_analytics_id"),
+                chpayload.action_key = 'change hub',
+                chpayload.hub_id =  e.target.value,
+                console.log("@CH:", chpayload)
+            })
+        }
+
+        document.querySelector('div > p[class="cursor-pointer hover:underline"]').addEventListener('click', () => {
+            console.log("qwerty")
+        })
+
+         // CHANGE HUB ACTION TYPE END
+
+
     }
+    
     // HOME PAGE END
 })
 
