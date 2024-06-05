@@ -64,9 +64,7 @@ const sendAnalyticsData = (data) => {
 
 }
 
-const hubChangeListener = () => {
-    console.log(document.querySelector('select[name="hub_id"]'))
-}
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -143,18 +141,20 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Error fetching IP address:', error));
 
-        hubChangeListener()
         // CHANGE HUB ACTION TYPE START
-        // const chpayload = {}
-        // const selectElement = document.querySelector('select[name="hub_id"]');
-        // if (selectElement) {
-        //     selectElement.addEventListener('change',(e) => {
-        //         chpayload.session_id = getCookie("session_analytics_id"),
-        //         chpayload.action_key = 'change hub',
-        //         chpayload.hub_id =  e.target.value,
-        //         console.log("@CH:", chpayload)
-        //     });
-        // }
+        const chpayload = {}
+        const selectElement = document.querySelector('select[name="hub_id"]');
+        if (selectElement) {
+            console.log("element found")
+            // selectElement.addEventListener('change',(e) => {
+            //     chpayload.session_id = getCookie("session_analytics_id"),
+            //     chpayload.action_key = 'change hub',
+            //     chpayload.hub_id =  e.target.value,
+            //     console.log("@CH:", chpayload)
+            // });
+        } else {
+            console.log("element not found")
+        }
      
         // for (let i = 0; i < hub.length; i+=1) {
         //     hub[i].addEventListener('change', (e) => {
