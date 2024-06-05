@@ -67,7 +67,7 @@ const sendAnalyticsData = (data) => {
 
 
 window.addEventListener('load', () => {
-
+    console.log(window.location.href)
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
     const countdownInterval = setInterval(() => {
@@ -79,7 +79,7 @@ window.addEventListener('load', () => {
         let formattedTime = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
     
         // Display the countdown
-        // console.log(formattedTime)
+        console.log(formattedTime)
     
         // Decrease the countdown time by 1 second
         countdownTime-=1;
