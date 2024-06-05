@@ -144,6 +144,7 @@ window.addEventListener('load', () => {
         const chpayload = {}
         const selectElement = document.querySelector('select[name="hub_id"]');
         if (selectElement) {
+            console.log(selectElement)
             selectElement.addEventListener('change',(e) => {
                 chpayload.session_id = getCookie("session_analytics_id")
                 chpayload.action_key = 'change hub'
