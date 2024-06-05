@@ -64,6 +64,10 @@ const sendAnalyticsData = (data) => {
 
 }
 
+const hubChangeListener = () => {
+    console.log(document.querySelector('select[name="hub_id"]'))
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // SESSION TIME LIMIT START
@@ -139,9 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error('Error fetching IP address:', error));
 
-
+        hubChangeListener()
         // CHANGE HUB ACTION TYPE START
-        console.log(document.querySelector('select[name="hub_id"]'))
         // const chpayload = {}
         // const selectElement = document.querySelector('select[name="hub_id"]');
         // if (selectElement) {
