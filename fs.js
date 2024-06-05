@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             console.log("@hp:", payload)
-            sendAnalyticsData(payload)
+            // sendAnalyticsData(payload)
 
         })
         .catch(error => console.error('Error fetching IP address:', error));
