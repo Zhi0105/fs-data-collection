@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             console.log("@hp:", payload)
-            // sendAnalyticsData(payload)
+            sendAnalyticsData(payload)
 
         })
         .catch(error => console.error('Error fetching IP address:', error));
@@ -150,14 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
             chpayload.hub_id =  e.target.value,
             console.log("@CH:", chpayload)
         })
-        // for (let i = 0; i < hub.length; i+=1) {
-        //     hub[i].addEventListener('change', (e) => {
-        //         chpayload.session_id = getCookie("session_analytics_id"),
-        //         chpayload.action_key = 'change hub',
-        //         chpayload.hub_id =  e.target.value,
-        //         console.log("@CH:", chpayload)
-        //     })
-        // }
 
          // CHANGE HUB ACTION TYPE END
 
