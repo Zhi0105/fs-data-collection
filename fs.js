@@ -141,17 +141,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
         // CHANGE HUB ACTION TYPE START
-
-        const chpayload = {}
-        const selectElement = document.querySelector('select[name="hub_id"]');
-        if (selectElement) {
-            selectElement.addEventListener('change',(e) => {
-                chpayload.session_id = getCookie("session_analytics_id"),
-                chpayload.action_key = 'change hub',
-                chpayload.hub_id =  e.target.value,
-                console.log("@CH:", chpayload)
-            });
-        }
+        console.log(document.querySelector('select[name="hub_id"]'))
+        // const chpayload = {}
+        // const selectElement = document.querySelector('select[name="hub_id"]');
+        // if (selectElement) {
+        //     selectElement.addEventListener('change',(e) => {
+        //         chpayload.session_id = getCookie("session_analytics_id"),
+        //         chpayload.action_key = 'change hub',
+        //         chpayload.hub_id =  e.target.value,
+        //         console.log("@CH:", chpayload)
+        //     });
+        // }
      
         // for (let i = 0; i < hub.length; i+=1) {
         //     hub[i].addEventListener('change', (e) => {
