@@ -66,7 +66,7 @@ const sendAnalyticsData = (data) => {
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
 
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
@@ -140,34 +140,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
         })
         .catch(error => console.error('Error fetching IP address:', error));
+
+        // CHANGE HUB ACTION TYPE START
+        const chpayload = {}
+        const selectElement = document.querySelector('select[name="hub_id"]');
+        if (selectElement) {
+            console.log("element found")
+            // selectElement.addEventListener('change',(e) => {
+            //     chpayload.session_id = getCookie("session_analytics_id"),
+            //     chpayload.action_key = 'change hub',
+            //     chpayload.hub_id =  e.target.value,
+            //     console.log("@CH:", chpayload)
+            // });
+        } else {
+            console.log("element not found")
+        }
+     
+        // for (let i = 0; i < hub.length; i+=1) {
+        //     hub[i].addEventListener('change', (e) => {
+        //         chpayload.session_id = getCookie("session_analytics_id"),
+        //         chpayload.action_key = 'change hub',
+        //         chpayload.hub_id =  e.target.value,
+        //         console.log("@CH:", chpayload)
+        //     })
+        // }
+
+         // CHANGE HUB ACTION TYPE END
+
+
     }
     
     // HOME PAGE END
 })
-
-// CHANGE HUB ACTION TYPE START
-const chpayload = {}
-const selectElement = document.querySelector('select[name="hub_id"]');
-if (selectElement) {
-    console.log("element found")
-    // selectElement.addEventListener('change',(e) => {
-    //     chpayload.session_id = getCookie("session_analytics_id"),
-    //     chpayload.action_key = 'change hub',
-    //     chpayload.hub_id =  e.target.value,
-    //     console.log("@CH:", chpayload)
-    // });
-} else {
-    console.log("element not found")
-}
-
-// for (let i = 0; i < hub.length; i+=1) {
-//     hub[i].addEventListener('change', (e) => {
-//         chpayload.session_id = getCookie("session_analytics_id"),
-//         chpayload.action_key = 'change hub',
-//         chpayload.hub_id =  e.target.value,
-//         console.log("@CH:", chpayload)
-//     })
-// }
-
-// CHANGE HUB ACTION TYPE END
 
