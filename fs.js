@@ -157,7 +157,10 @@ window.addEventListener('load', () => {
         document.addEventListener('click', (e) => {
             const locationOption = e.target.closest('.modal-body .grid div p');
             if (locationOption) {
-                console.log(locationOption)
+                locationOption.addEventListener('click', () => {
+                    const city = getCookie("city_id")
+                    console.log(city)
+                })
                 // const locationName = locationOption.textContent.trim();
                 // console.log('Selected location from ROP (hub_id 4): ' + locationName);
             }
