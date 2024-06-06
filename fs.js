@@ -146,20 +146,18 @@ window.addEventListener('load', () => {
         const chpayload = {}
         const selectElement = document.querySelector('select[name="hub_id"]');
         if (selectElement) {
-            selectElement.addEventListener('click', () => {
-                selectElement.addEventListener('change',(e) => {
-                    chpayload.session_id = getCookie("session_analytics_id")
-                    chpayload.action_key = 'change hub'
-                    chpayload.hub_id =  e.target.value
-                    console.log("@CH:", chpayload)
-                });
-            })
+            selectElement.addEventListener('change',(e) => {
+                chpayload.session_id = getCookie("session_analytics_id")
+                chpayload.action_key = 'change hub'
+                chpayload.hub_id =  e.target.value
+                console.log("@CH:", chpayload)
+            });
         }
 
         document.addEventListener('click', (e) => {
             const locationOption = e.target.closest('.modal-body .grid div p');
             if (locationOption) {
-                getCookie("city_id") && console.log(getCookie("city_id"))
+                console.log(getCookie("city_id"))
                 // const locationName = locationOption.textContent.trim();
                 // console.log('Selected location from ROP (hub_id 4): ' + locationName);
             }
