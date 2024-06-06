@@ -64,8 +64,6 @@ const sendAnalyticsData = (data) => {
 
 }
 
-
-
 window.addEventListener('load', () => {
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
@@ -157,13 +155,13 @@ window.addEventListener('load', () => {
         document.addEventListener('click', (e) => {
             const locationOption = e.target.closest('.modal-body .grid div div p');
             if (locationOption) {
-                console.log(locationOption)
                 setTimeout(() => {
-                    console.log(getCookie("city_id"))
+                    chpayload.session_id = getCookie("session_analytics_id")
+                    chpayload.action_key = 'change hub'
+                    chpayload.hub_id =  getCookie("hub_id") 
+                    chpayload.city_id = getCookie("city_id") 
+                    console.log("@CH:", chpayload)
                 }, 1000);
-            
-                // const locationName = locationOption.textContent.trim();
-                // console.log('Selected location from ROP (hub_id 4): ' + locationName);
             }
         })
 
