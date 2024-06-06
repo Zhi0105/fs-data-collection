@@ -144,18 +144,21 @@ window.addEventListener('load', () => {
         const chpayload = {}
         const selectElement = document.querySelector('select[name="hub_id"]');
         if (selectElement) {
-            console.log(selectElement)
             selectElement.addEventListener('change',(e) => {
                 chpayload.session_id = getCookie("session_analytics_id")
                 chpayload.action_key = 'change hub'
                 chpayload.hub_id =  e.target.value
                 console.log("@CH:", chpayload)
-
-                if(Number(e.target.value) === 4){
-                    console.log('hub equal to 4')
-                }
             });
         }
+
+        document.addEventListener('click', (e) => {
+            const locationOption = e.target.closest('.modal-body .grid div p');
+            if (locationOption) {
+                const locationName = locationOption.textContent.trim();
+                console.log('Selected location from ROP (hub_id 4): ' + locationName);
+            }
+        })
 
         // for (let i = 0; i < hub.length; i+=1) {
         //     hub[i].addEventListener('change', (e) => {
