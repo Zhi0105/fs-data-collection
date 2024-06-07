@@ -170,6 +170,9 @@ window.addEventListener('load', () => {
             const anchor = event.target.closest('a');
             if (anchor) {
                 console.log('Clicked anchor tag: ' + anchor.href);
+                const split = anchor.href.split('/')
+                if(String(split[split.length - 1]).toLocaleLowerCase() === 'login') { console.log('login clicked') }
+                if(String(split[split.length - 1]).toLocaleLowerCase() === 'register') { console.log('register clicked') }                
             } })
         // LOGIN & REGISTRATION CLICK EVENTS END
 
