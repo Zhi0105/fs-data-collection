@@ -166,19 +166,11 @@ window.addEventListener('load', () => {
          // CHANGE HUB ACTION TYPE END
 
         // LOGIN & REGISTRATION CLICK EVENTS START
-        document.querySelector('click', (event) => {
-            const anchor = event.target.closest('a')
-            if(anchor) {
-                console.log(anchor.href) 
-                // if(anchor.href="https://dev2.flowerstore.ph/login") {
-                //     console.log("login clicked")
-                // }
-                // if(anchor.href="https://dev2.flowerstore.ph/register") {
-                //     console.log('register clicked')
-                // }
-            }
-        })
-
+        document.addEventListener("click", (event) => {
+            const anchor = event.target.closest('a');
+            if (anchor) {
+                console.log('Clicked anchor tag: ' + anchor.href);
+            } })
         // LOGIN & REGISTRATION CLICK EVENTS END
 
         
