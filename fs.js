@@ -126,7 +126,7 @@ window.addEventListener('load', () => {
                 session_id: getCookie("session_analytics_id"),
                 action_key: 'entrance',
                 page_entrance: 'page',
-                source_id: 1,
+                source_id: current_url.toLowerCase() === 'https://potico.ph/' ? 5 : 1,
                 hub_id: getCookie("hub_id") ? getCookie("hub_id")  : 1,
                 user_agent: window.navigator.userAgent,
                 ip_address: data.ip
