@@ -165,15 +165,18 @@ window.addEventListener('load', () => {
 
          // CHANGE HUB ACTION TYPE END
 
-
         // LOGIN & REGISTRATION CLICK EVENTS START
-        document.querySelector('a[href="https://dev2.flowerstore.ph/login"]').addEventListener('click', () =>{ 
-            console.log('login clicked')
+        document.querySelector('click', (event) => {
+            const anchor = event.target.closest('a')
+            if(anchor) { 
+                if(anchor.href="https://dev2.flowerstore.ph/login") {
+                    console.log("login clicked")
+                }
+                if(anchor.href="https://dev2.flowerstore.ph/register") {
+                    console.log('register clicked')
+                }
+            }
         })
-        document.querySelector('a[href="https://dev2.flowerstore.ph/register"]').addEventListener('click', () =>{ 
-            console.log('registration clicked')
-        })
-
 
         // LOGIN & REGISTRATION CLICK EVENTS END
 
