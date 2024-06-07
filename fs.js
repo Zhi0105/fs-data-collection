@@ -111,7 +111,6 @@ window.addEventListener('load', () => {
     
 
     // HOME PAGE START
-
     if(!sliced[0]?.length || !sliced?.length) {     
 
     // SESSION START
@@ -140,7 +139,6 @@ window.addEventListener('load', () => {
 
         // CHANGE HUB ACTION TYPE START
         
-
         const chpayload = {}
         const selectElement = document.querySelector('select[name="hub_id"]');
         if (selectElement) {
@@ -165,20 +163,23 @@ window.addEventListener('load', () => {
             }
         })
 
-        // for (let i = 0; i < hub.length; i+=1) {
-        //     hub[i].addEventListener('change', (e) => {
-        //         chpayload.session_id = getCookie("session_analytics_id"),
-        //         chpayload.action_key = 'change hub',
-        //         chpayload.hub_id =  e.target.value,
-        //         console.log("@CH:", chpayload)
-        //     })
-        // }
-
          // CHANGE HUB ACTION TYPE END
 
 
+        // LOGIN & REGISTRATION CLICK EVENTS START
+        document.querySelector('a[href="https://dev2.flowerstore.ph/login"]').addEventListener('click', () =>{ 
+            console.log('login clicked')
+        })
+        document.querySelector('a[href="https://dev2.flowerstore.ph/register"]').addEventListener('click', () =>{ 
+            console.log('registration clicked')
+        })
+
+
+        // LOGIN & REGISTRATION CLICK EVENTS END
+
+        
+
     }
-    
     // HOME PAGE END
 })
 
