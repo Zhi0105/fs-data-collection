@@ -168,13 +168,14 @@ window.addEventListener('load', () => {
         // LOGIN & REGISTRATION CLICK EVENTS START
         document.querySelector('click', (event) => {
             const anchor = event.target.closest('a')
-            if(anchor) { 
-                if(anchor.href="https://dev2.flowerstore.ph/login") {
-                    console.log("login clicked")
-                }
-                if(anchor.href="https://dev2.flowerstore.ph/register") {
-                    console.log('register clicked')
-                }
+            if(anchor) {
+                console.log(anchor.href) 
+                // if(anchor.href="https://dev2.flowerstore.ph/login") {
+                //     console.log("login clicked")
+                // }
+                // if(anchor.href="https://dev2.flowerstore.ph/register") {
+                //     console.log('register clicked')
+                // }
             }
         })
 
