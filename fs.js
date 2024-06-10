@@ -198,16 +198,17 @@ window.addEventListener('load', () => {
     // PDP START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
         console.log("Product page")
-        document.addEventListener('click', () => {
-            const price = document.querySelector('div[class="justify-self-end text-brand"] > span').textContent
-            if(price){
-                const payload = {
-                    session_id: getCookie("session_analytics_id"),
-                    action_key: 'Product',
-                    price: price
-                }
-                console.log("@Product:", payload)
-            }
+        document.addEventListener('click', (e) => {
+            const price = e.target.closest('div[class="justify-self-end text-brand"] > span')
+            console.log(price)
+            // if(price){
+            //     const payload = {
+            //         session_id: getCookie("session_analytics_id"),
+            //         action_key: 'Product',
+            //         price: price
+            //     }
+            //     console.log("@Product:", payload)
+            // }
         })
       
     }
