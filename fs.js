@@ -198,7 +198,8 @@ window.addEventListener('load', () => {
     // PDP START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
         console.log("Product page")
-        console.log(document.querySelector('div[class="justify-self-end text-brand"]'))
+        const price = document.querySelector('div[class="justify-self-end text-brand"] > price')
+        if(price) console.log(price)
             // console.log(price)
             // if(price){
             //     const payload = {
