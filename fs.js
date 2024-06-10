@@ -192,6 +192,20 @@ window.addEventListener('load', () => {
         
 
     }
-    // HOME PAGE END
+    // HOME PAGE 
+    
+
+    // PDP START
+    if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
+        const price = document.querySelector('div[class="justify-self-end text-brand"] > span').textContent
+        const payload = {
+            session_id: getCookie("session_analytics_id"),
+            action_key: 'Product',
+            price: price
+        }
+        console.log("@Product:", payload)
+    }
+    // PDP END
+
 })
 
