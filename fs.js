@@ -198,8 +198,7 @@ window.addEventListener('load', () => {
     // PDP START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
         console.log("Product page")
-        document.addEventListener('load', (e) => {
-            console.log(document.querySelector('div[class="justify-self-end text-brand"] > span'))
+        console.log(document.querySelector('div[class="justify-self-end text-brand"]'))
             // console.log(price)
             // if(price){
             //     const payload = {
@@ -209,7 +208,6 @@ window.addEventListener('load', () => {
             //     }
             //     console.log("@Product:", payload)
             // }
-        })
       
     }
     // PDP END
