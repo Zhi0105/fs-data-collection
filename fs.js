@@ -198,8 +198,12 @@ window.addEventListener('load', () => {
     // PDP START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
         console.log("Product page")
-        const price = document.querySelector('div[class="flex justify-between mt-5"] ')
-        if(price) console.log(price)
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const price = document.querySelector('div[class="flex justify-between mt-5"] ')
+            if(price) console.log(price)
+        })
+
             // console.log(price)
             // if(price){
             //     const payload = {
