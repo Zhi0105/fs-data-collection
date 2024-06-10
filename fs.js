@@ -200,9 +200,9 @@ window.addEventListener('load', () => {
         console.log("Product page")
 
         setTimeout(() => {
-            const price = document.querySelector('div[class="flex justify-between mt-5"] ')
+            const price = document.querySelector('div[class="justify-self-end text-brand"] span').textContent
             if(price) console.log(price)
-        }, 2000);
+        }, 1000);
 
             // console.log(price)
             // if(price){
