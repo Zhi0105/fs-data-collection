@@ -198,9 +198,9 @@ window.addEventListener('load', () => {
     // PDP START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
         console.log("Product page")
-        document.addEventListener('click', (e) => {
-            const price = e.target.closest('div[class="justify-self-end text-brand"] > span')
-            console.log(price)
+        document.addEventListener('load', (e) => {
+            console.log(document.querySelector('div[class="justify-self-end text-brand"] > span'))
+            // console.log(price)
             // if(price){
             //     const payload = {
             //         session_id: getCookie("session_analytics_id"),
