@@ -199,10 +199,10 @@ window.addEventListener('load', () => {
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
         console.log("Product page")
 
-        document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
             const price = document.querySelector('div[class="flex justify-between mt-5"] ')
             if(price) console.log(price)
-        })
+        }, 2000);
 
             // console.log(price)
             // if(price){
