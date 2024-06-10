@@ -201,19 +201,15 @@ window.addEventListener('load', () => {
 
         setTimeout(() => {
             const price = document.querySelector('div[class="justify-self-end text-brand"] span').textContent
-            if(price) console.log(price)
+             if(price){
+                const payload = {
+                    session_id: getCookie("session_analytics_id"),
+                    action_key: 'Product',
+                    price: price
+                }
+                console.log("@Product:", payload)
+            }
         }, 1000);
-
-            // console.log(price)
-            // if(price){
-            //     const payload = {
-            //         session_id: getCookie("session_analytics_id"),
-            //         action_key: 'Product',
-            //         price: price
-            //     }
-            //     console.log("@Product:", payload)
-            // }
-      
     }
     // PDP END
 
