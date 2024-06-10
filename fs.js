@@ -171,10 +171,20 @@ window.addEventListener('load', () => {
             if (anchor) {
                 const split = anchor.href.split('/')
                 if(String(split[split.length - 1]).toLocaleLowerCase() === 'login') { 
-                    console.log("event timestamp:", getCurrentDate())
+                    const payload = {
+                        session_id: getCookie("session_analytics_id"),
+                        action_key: 'login',
+                        pixel_back_timestamp: getCurrentDate()
+                    }
+                    console.log("@login:", payload)
                 }
                 if(String(split[split.length - 1]).toLocaleLowerCase() === 'register') { 
-                    console.log("event timestamp:", getCurrentDate())
+                    const payload = {
+                        session_id: getCookie("session_analytics_id"),
+                        action_key: 'register',
+                        pixel_back_timestamp: getCurrentDate()
+                    }
+                    console.log("@register:", payload)
                 }                
             } })
         // LOGIN & REGISTRATION CLICK EVENTS END
