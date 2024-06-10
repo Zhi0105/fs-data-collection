@@ -1,5 +1,3 @@
-const storeURL = 'https://bi-tools-dev.flwr.ph/api/data-collection/ph/store'
-
 const hashString = async(str) => {
     const encoder = new TextEncoder();
     const data = encoder.encode(str);
@@ -38,11 +36,13 @@ const getUserIP =  () => {
     return fetch('https://api.ipify.org?format=json')
 }
 const sendAnalyticsData = (data) => {
+    const url = 'https://bi-tools-dev.flwr.ph/api/data-collection/ph/store'
+
     if(navigator.sendBeacon) {
         const blob = new Blob([JSON.stringify(data)], { type: 'application/json' })
-        navigator.sendBeacon(storeURL, blob)
+        navigator.sendBeacon(url, blob)
     } else {
-        fetch(storeURL, {
+        fetch(url, {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',

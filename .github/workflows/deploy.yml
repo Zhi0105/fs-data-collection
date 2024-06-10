@@ -1,4 +1,4 @@
-name: Upload to S3
+name: Upload to S3 (Production)
 
 on:
   push:
@@ -12,19 +12,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
-          ref: 'development'
+          ref: "development"
 
       - name: Replace url to send data to corresponding environment
         run: |
-            cd $GITHUB_WORKSPACE
-            sed -i 's/https:\/\/bi-tools-dev.flwr.ph/https:\/\/bi-tools.flwr.ph/g' fs.js
+          cd $GITHUB_WORKSPACE
+          sed -i 's/https:\/\/bi-tools-dev.flwr.ph/https:\/\/bi-tools.flwr.ph/g' fs.js
 
       - name: Create release directory and copy analytics file
         run: |
-            cd ../
-            mkdir release/
-            cp $GITHUB_WORKSPACE/fs.js release/fs.js
-            
+          cd ../
+          mkdir release/
+          cp $GITHUB_WORKSPACE/fs.js release/fs.js
+
       - uses: shallwefootball/s3-upload-action@master
         name: Upload to S3 Bucket
         with:
