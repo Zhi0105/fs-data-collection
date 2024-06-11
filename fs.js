@@ -196,8 +196,6 @@ window.addEventListener('load', () => {
 
     // PDP START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
-        console.log("Product page")
-
         setTimeout(() => {
             const price = document.querySelector('div[class="justify-self-end text-brand"] span').textContent
              if(price){
@@ -212,6 +210,20 @@ window.addEventListener('load', () => {
         }, 1000);
     }
     // PDP END
+
+    // MY ACCOUNT START
+    if(sliced[0].length  && sliced[0].toLowerCase() === 'my-account'){
+        console.log("My account page")
+        setTimeout(() => {
+                const payload = {
+                    session_id: getCookie("session_analytics_id"),
+                    action_key: 'My account',
+                    pixel_back_timestamp: getCurrentDate()
+                }
+                console.log("@MA:", payload)
+        }, 1000);
+    }
+    // MY ACCOUNT END
 
 })
 
