@@ -204,7 +204,8 @@ window.addEventListener('load', () => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'Product',
-                    price: price
+                    price: price,
+                    pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@Product:", payload)
             }
