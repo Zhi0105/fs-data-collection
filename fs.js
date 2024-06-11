@@ -225,5 +225,13 @@ window.addEventListener('load', () => {
     }
     // MY ACCOUNT END
 
+
+    // TRACK ORDER START
+    document.querySelector('form div[class="text-right"] button').addEventListener('click', () => {
+        console.log('Hello world!')
+    })
+    // TRACK ORDER END
+
+
 })
 
