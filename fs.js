@@ -36,7 +36,6 @@ const getUserIP =  () => {
     return fetch('https://api.ipify.org?format=json')
 }
 const sendAnalyticsData = (data) => {
-
     const url = 'https://bi-tools-dev.flwr.ph/api/data-collection/ph/store'
 
     if(navigator.sendBeacon) {
@@ -205,7 +204,8 @@ window.addEventListener('load', () => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'Product',
-                    price: price
+                    price: price,
+                    pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@Product:", payload)
             }
