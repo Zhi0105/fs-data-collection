@@ -227,8 +227,8 @@ window.addEventListener('load', () => {
     document.addEventListener('click', (e) => {
         const trackorder = e.target.closest('div[class="text-right"] button')
         if(trackorder) {
-            const order = document.querySelector('input[name="order_name"]')
-            const email = document.querySelector('input[name="contact_email"]')
+            const order = document.querySelector('input[name="order_name"]').value
+            const email = document.querySelector('input[name="contact_email"]').value
 
             order && console.log(order)
             email && console.log(email)
