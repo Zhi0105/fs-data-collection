@@ -229,10 +229,15 @@ window.addEventListener('load', () => {
         if(trackorder) {
             const order = document.querySelector('input[name="order_name"]').value
             const email = document.querySelector('input[name="contact_email"]').value
-
-            order && console.log(order)
-            email && console.log(email)
-        
+            if(order && email) {
+                const payload = {
+                    session_id: getCookie("session_analytics_id"),
+                    action_key: 'Track Order',
+                    order_number: order,
+                    email: email
+                }
+                console.log("@TO:", payload)
+            }
         }
     })
 
