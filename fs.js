@@ -239,7 +239,7 @@ window.addEventListener('load', () => {
     // TRACK ORDER END
     // CHANGE LANGUAGE TRACK START
     document.addEventListener('click', (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         const language_list = e.target.closest('.multiselect-dropdown w-16 is-hidden .multiselect-options li')
         if(language_list) {
             console.log("language list clicked!")
