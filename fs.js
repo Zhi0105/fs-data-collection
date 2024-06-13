@@ -139,16 +139,16 @@ window.addEventListener('load', () => {
         const chpayload = {}
         const selectElement = document.querySelector('select[name="hub_id"]');
         if (selectElement) {
-            selectElement.addEventListener('change',(e) => {
+            selectElement.addEventListener('change',(select) => {
                 chpayload.session_id = getCookie("session_analytics_id")
                 chpayload.action_key = 'change hub'
-                chpayload.hub_id =  e.target.value
+                chpayload.hub_id =  select.target.value
                 console.log("@CH:", chpayload)
             });
         }
 
-        document.addEventListener('click', (e) => {
-            const locationOption = e.target.closest('.modal-body .grid div div p');
+        document.addEventListener('click', (location) => {
+            const locationOption = location.target.closest('.modal-body .grid div div p');
             if (locationOption) {
                 setTimeout(() => {
                     chpayload.session_id = getCookie("session_analytics_id")
@@ -220,8 +220,8 @@ window.addEventListener('load', () => {
     }
     // MY ACCOUNT END
     // TRACK ORDER START
-    document.addEventListener('click', (e) => {
-        const trackorder = e.target.closest('div[class="text-right"] button')
+    document.addEventListener('click', (trackevent) => {
+        const trackorder = trackevent.target.closest('div[class="text-right"] button')
         if(trackorder) {
             const order = document.querySelector('input[name="order_name"]').value
             const email = document.querySelector('input[name="contact_email"]').value
@@ -238,9 +238,8 @@ window.addEventListener('load', () => {
     })
     // TRACK ORDER END
     // CHANGE LANGUAGE TRACK START
-    document.addEventListener('click', (e) => {
-        // e.preventDefault()
-        const language_list = e.target.closest('.multiselect-dropdown w-16 is-hidden .multiselect-options li')
+    document.addEventListener('click', (language) => {
+        const language_list = language.target.closest('.multiselect-dropdown w-16 is-hidden .multiselect-options li')
         if(language_list) {
             console.log("language list clicked!")
         }
