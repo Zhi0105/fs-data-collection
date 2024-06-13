@@ -100,14 +100,12 @@ window.addEventListener('load', () => {
         item.length && current_url_array.push(item)
     })
 
-    
     // GET PREFIX URL NAME NEXT TO HTTP OR HTTPS
     const urlPrefix = current_url_array[1]
     const prefixIndex = split.indexOf(urlPrefix)
 
     // SLICED URL BASED ON PREFIX INDEX + 1 INDEX TO GET URL ENDPOINT
     const sliced = split.slice(prefixIndex + 1)
-    
 
     // HOME PAGE START
     if(!sliced[0]?.length || !sliced?.length) {     
@@ -192,7 +190,6 @@ window.addEventListener('load', () => {
 
     }
     // HOME PAGE 
-    
     // PDP START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
         setTimeout(() => {
@@ -222,7 +219,6 @@ window.addEventListener('load', () => {
         }, 1000);
     }
     // MY ACCOUNT END
-
     // TRACK ORDER START
     document.addEventListener('click', (e) => {
         const trackorder = e.target.closest('div[class="text-right"] button')
@@ -240,9 +236,14 @@ window.addEventListener('load', () => {
             }
         }
     })
-
     // TRACK ORDER END
-
-
+    // CHANGE LANGUAGE TRACK START
+    document.addEventListener('click', (e) => {
+        const language_list = document.querySelector('.multiselect-options li')
+        if(language_list) {
+            console.log("language list clicked!")
+        }
+    })
+    // CHANGE LANGUAGE TRACK END
 })
 
