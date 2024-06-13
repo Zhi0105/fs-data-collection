@@ -193,7 +193,6 @@ window.addEventListener('load', () => {
     }
     // HOME PAGE 
     
-
     // PDP START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
         setTimeout(() => {
@@ -210,7 +209,6 @@ window.addEventListener('load', () => {
         }, 1000);
     }
     // PDP END
-
     // MY ACCOUNT START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'my-account'){
         console.log("My account page")
@@ -225,11 +223,12 @@ window.addEventListener('load', () => {
     }
     // MY ACCOUNT END
 
-
     // TRACK ORDER START
-    document.querySelector('form div[class="text-right"] button').addEventListener('click', () => {
-        console.log('Hello world!')
+    document.addEventListener('click', (e) => {
+        const trackorder = e.target.closest('div[class="text-right"] button')
+        if(trackorder) console.log("trackorder!")
     })
+
     // TRACK ORDER END
 
 
