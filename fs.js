@@ -226,7 +226,14 @@ window.addEventListener('load', () => {
     // TRACK ORDER START
     document.addEventListener('click', (e) => {
         const trackorder = e.target.closest('div[class="text-right"] button')
-        if(trackorder) console.log("trackorder!")
+        if(trackorder) {
+            const order = document.querySelector('input[name="order_name"]')
+            const email = document.querySelector('input[name="contact_email"]')
+
+            order && console.log(order)
+            email && console.log(email)
+        
+        }
     })
 
     // TRACK ORDER END
