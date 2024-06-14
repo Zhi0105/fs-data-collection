@@ -218,6 +218,12 @@ window.addEventListener('load', () => {
                 console.log("@MA:", payload)
         }, 1000);
     }
+    
+    document.addEventListener('click', (e) => {
+        const my_account = e.target.textContent
+        console.log(my_account)
+    })
+
     // MY ACCOUNT END
     // TRACK ORDER START
     document.addEventListener('click', (trackevent) => {
