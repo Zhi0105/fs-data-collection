@@ -254,11 +254,10 @@ window.addEventListener('load', () => {
     // TRACK ORDER END
     // CHANGE LANGUAGE TRACK START
 
-    document.addEventListener('click', (language) => {
-        language.preventDefault()
-        const language_change = language.target.closest('ul[id="multiselect-options"]')
+    document.addEventListener('click', () => {
+        const language_change = document.querySelector('#multiselect-options')
         language_change && console.log(language_change)
-    }, { passive: false })
+    })
 
     // document.getElementById('multiselect-options').addEventListener('click', (ul) => {
     //     ul.target && console.log(ul.target)
