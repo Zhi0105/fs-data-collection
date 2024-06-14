@@ -256,7 +256,9 @@ window.addEventListener('load', () => {
 
     document.addEventListener('click', () => {
         const language_change = document.querySelector('#multiselect-options')
-        language_change && console.log(language_change)
+        language_change && language_change.addEventListener('click', (li) => {
+            console.log(li.target)
+        })
     })
 
     // document.getElementById('multiselect-options').addEventListener('click', (ul) => {
