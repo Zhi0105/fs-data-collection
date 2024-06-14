@@ -221,7 +221,17 @@ window.addEventListener('load', () => {
     
     document.addEventListener('click', (e) => {
         const my_account = e.target.textContent
-        console.log(my_account)
+        if(my_account.toLocaleLowerCase() === 'my account') {
+            setTimeout(() => {
+                const payload = {
+                    session_id: getCookie("session_analytics_id"),
+                    action_key: 'My account',
+                    pixel_back_timestamp: getCurrentDate()
+                }
+                console.log("@MA:", payload)
+            }, 1000);
+        }
+        
     })
 
     // MY ACCOUNT END
