@@ -255,7 +255,7 @@ window.addEventListener('load', () => {
     // CHANGE LANGUAGE TRACK START
 
     document.addEventListener('click', () => {
-        const language_change = document.querySelector('ul[role"listbox"] > li')
+        const language_change = document.querySelector('ul[role="listbox"] > li')
         language_change && console.log('li clicked!')
     })
 
