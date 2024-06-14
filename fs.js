@@ -256,7 +256,7 @@ window.addEventListener('load', () => {
 
     document.addEventListener('click', (language) => {
         language.preventDefault()
-        const language_change = cl.target.closest('ul[id="multiselect-options"]')
+        const language_change = language.target.closest('ul[id="multiselect-options"]')
         language_change && console.log(language_change)
     }, { passive: false })
 
