@@ -219,8 +219,8 @@ window.addEventListener('load', () => {
         }, 1000);
     }
     
-    document.addEventListener('click', (e) => {
-        const my_account = e.target.textContent
+    document.addEventListener('click', (ma) => {
+        const my_account = ma.target.textContent
         if(my_account.toLocaleLowerCase() === 'my account') {
             setTimeout(() => {
                 const payload = {
@@ -233,7 +233,6 @@ window.addEventListener('load', () => {
         }
         
     })
-
     // MY ACCOUNT END
     // TRACK ORDER START
     document.addEventListener('click', (trackevent) => {
@@ -254,11 +253,8 @@ window.addEventListener('load', () => {
     })
     // TRACK ORDER END
     // CHANGE LANGUAGE TRACK START
-    document.addEventListener('click', (language) => {
-        const language_list = language.target.closest('.multiselect-dropdown w-16 is-hidden .multiselect-options li')
-        if(language_list) {
-            console.log("language list clicked!")
-        }
+    document.getElementById('multiselect-options').addEventListener('click', (ul) => {
+        ul.target && console.log(ul.target)
     })
     // CHANGE LANGUAGE TRACK END
 })
