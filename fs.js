@@ -254,8 +254,8 @@ window.addEventListener('load', () => {
     // TRACK ORDER END
     // CHANGE LANGUAGE TRACK START
 
-    document.addEventListener('click', () => {
-        const language_change = document.querySelector('li[class="multiselect-option language-option"]')
+    document.addEventListener('click', (language) => {
+        const language_change = language.target.closest('li[class="multiselect-option language-option"]')
         language_change && console.log('li clicked!')
     })
 
