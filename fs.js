@@ -186,10 +186,19 @@ window.addEventListener('load', () => {
             } })
         // LOGIN & REGISTRATION CLICK EVENTS END
 
-        
+        // CHANGE LANGUAGE TRACK START
+        document.addEventListener('click', (list) => {
+            const a = list.target.closest('li[id="multiselect-option-en"]')
+            if(a) {
+                setTimeout(() => {
+                console.log("clicked")  
+                }, 2000);
+            }
+        })
+        // CHANGE LANGUAGE TRACK END
 
     }
-    // HOME PAGE 
+    // HOME PAGE END
     // PDP START
     if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
         setTimeout(() => {
@@ -252,16 +261,5 @@ window.addEventListener('load', () => {
         }
     })
     // TRACK ORDER END
-    // CHANGE LANGUAGE TRACK START
-
-    document.addEventListener('click', (language) => {
-        const language_change = language.target.closest('li[class="multiselect-option language-option"]')
-        language_change && console.log('li clicked!')
-    })
-
-    // document.getElementById('multiselect-options').addEventListener('click', (ul) => {
-    //     ul.target && console.log(ul.target)
-    // })
-    // CHANGE LANGUAGE TRACK END
 })
 
