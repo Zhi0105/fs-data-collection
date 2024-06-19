@@ -264,7 +264,14 @@ window.addEventListener('load', () => {
 
     // BILLING START
     if(sliced?.length && sliced[sliced?.length - 1]?.toLowerCase() === 'information'){
-        console.log("Hello from billing info page!")
+        setTimeout(() => {
+            const payload = {
+                session_id: getCookie("session_analytics_id"),
+                action_key: 'Shipping',
+                pixel_back_timestamp: getCurrentDate()
+            }
+            console.log("@Billing:", payload)
+        }, 1000);
     }
     // BILLING END
 
