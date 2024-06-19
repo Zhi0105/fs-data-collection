@@ -200,7 +200,7 @@ window.addEventListener('load', () => {
     }
     // HOME PAGE END
     // PDP START
-    if(sliced[0].length  && sliced[0].toLowerCase() === 'product'){
+    if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'product'){
         setTimeout(() => {
             const price = document.querySelector('div[class="justify-self-end text-brand"] span').textContent
              if(price){
@@ -216,7 +216,7 @@ window.addEventListener('load', () => {
     }
     // PDP END
     // MY ACCOUNT START
-    if(sliced[0].length  && sliced[0].toLowerCase() === 'my-account'){
+    if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'my-account'){
         console.log("My account page")
         setTimeout(() => {
                 const payload = {
@@ -226,10 +226,7 @@ window.addEventListener('load', () => {
                 }
                 console.log("@MA:", payload)
         }, 1000);
-    }
-
-    console.log(sliced)
-    
+    }    
     document.addEventListener('click', (ma) => {
         const my_account = ma.target.textContent
         if(my_account.toLocaleLowerCase() === 'my account') {
@@ -263,5 +260,17 @@ window.addEventListener('load', () => {
         }
     })
     // TRACK ORDER END
+
+
+    // BILLING START
+    if(sliced?.length && sliced[sliced?.length - 1]?.toLowerCase() === 'information'){
+        console.log("Hello from billing info page!")
+    }
+    // BILLING END
+
+
+    // PAYMENT START
+
+    // PAYMENNT END
 })
 
