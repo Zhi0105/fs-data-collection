@@ -187,14 +187,14 @@ window.addEventListener('load', () => {
         // LOGIN & REGISTRATION CLICK EVENTS END
 
         // CHANGE LANGUAGE TRACK START
-        document.addEventListener('click', (list) => {
-            const a = list.target.closest('li[id="multiselect-option-en"]')
-            if(a) {
-                setTimeout(() => {
-                console.log("clicked")  
-                }, 2000);
-            }
-        })
+        // document.addEventListener('click', (list) => {
+        //     const a = list.target.closest('li[id="multiselect-option-en"]')
+        //     if(a) {
+        //         setTimeout(() => {
+        //         console.log("clicked")  
+        //         }, 2000);
+        //     }
+        // })
         // CHANGE LANGUAGE TRACK END
 
     }
@@ -227,6 +227,8 @@ window.addEventListener('load', () => {
                 console.log("@MA:", payload)
         }, 1000);
     }
+
+    console.log(sliced)
     
     document.addEventListener('click', (ma) => {
         const my_account = ma.target.textContent
