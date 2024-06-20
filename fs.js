@@ -76,8 +76,8 @@ const sendAnalyticsData = (data) => {
 
 
 }
-window.addEventListener('load', () => {
-    encodeString(getCurrentDate()).then(res => {
+window.addEventListener('load', async() => {
+    await encodeString(getCurrentDate()).then(res => {
         console.log(res.data)
     })
     // SESSION TIME LIMIT START
