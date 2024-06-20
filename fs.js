@@ -1,15 +1,4 @@
-const encodeString = (str) => {
-    const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
-    fetch(url).then(res => {
-        if(res) {
-            res.json().then(data => {
-                return data
-            })
-        }
-    }).catch(err => {
-        console.log(err)
-    })
-}
+
 const hashString = async(str) => {
     const encoder = new TextEncoder();
     const data = encoder.encode(str);
@@ -46,6 +35,18 @@ const getCurrentDate = () => {
 }
 const getUserIP =  () => {
     return fetch('https://api.ipify.org?format=json')
+}
+const encodeString = (str) => {
+    const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
+    fetch(url).then(res => {
+        if(res) {
+            res.json().then(data => {
+                data && setCookie("session_analytics_id", data, 1)
+            })
+        }
+    }).catch(err => {
+        console.log(err)
+    })
 }
 const sendAnalyticsData = (data) => {
     const url = 'https://bi-tools-dev.flwr.ph/api/data-collection/ph/store'
@@ -123,8 +124,8 @@ window.addEventListener('load', () => {
     if(!sliced[0]?.length || !sliced?.length) {     
 
     // SESSION START
-        const hashedString = encodeString(getCurrentDate())
-        !session_id && hashedString && setCookie("session_analytics_id", hashedString, 1)
+        !session_id && encodeString(getCurrentDate())
+        // !session_id && hashedString && setCookie("session_analytics_id", hashedString, 1)
         // hashString(getCurrentDate()).then(hashedString => {
         //     !session_id && setCookie("session_analytics_id", hashedString, 1)
         // })
