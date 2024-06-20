@@ -2,7 +2,9 @@ const encodeString = (str) => {
     const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
     fetch(url).then(res => {
         if(res) {
-            console.log(res)
+            res.json().then(data => {
+                return data
+            })
         }
     }).catch(err => {
         console.log(err)
@@ -121,10 +123,11 @@ window.addEventListener('load', () => {
     if(!sliced[0]?.length || !sliced?.length) {     
 
     // SESSION START
-        encodeString(getCurrentDate())
-        hashString(getCurrentDate()).then(hashedString => {
-            !session_id && setCookie("session_analytics_id", hashedString, 1)
-        })
+        const hashedString = encodeString(getCurrentDate())
+        !session_id && hashedString && setCookie("session_analytics_id", hashedString, 1)
+        // hashString(getCurrentDate()).then(hashedString => {
+        //     !session_id && setCookie("session_analytics_id", hashedString, 1)
+        // })
     // SESSION END
 
         getUserIP().then(response => response.json())
