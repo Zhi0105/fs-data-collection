@@ -77,9 +77,7 @@ const sendAnalyticsData = (data) => {
 
 }
 window.addEventListener('load', async() => {
-    await encodeString(getCurrentDate()).then(res => {
-        res && console.log(res.data)
-    })
+    
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
     const countdownInterval = setInterval(() => {
@@ -127,6 +125,10 @@ window.addEventListener('load', async() => {
     if(!sliced[0]?.length || !sliced?.length) {     
 
     // SESSION START
+        await encodeString(getCurrentDate()).then(res => {
+            res && console.log(res.data)
+        })
+
         hashString(getCurrentDate()).then(hashedString => {
             !session_id && setCookie("session_analytics_id", hashedString, 1)
         })
