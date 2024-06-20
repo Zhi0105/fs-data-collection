@@ -1,12 +1,12 @@
 
-const hashString = async(str) => {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(str);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    return hashHex;
-}
+// const hashString = async(str) => {
+//     const encoder = new TextEncoder();
+//     const data = encoder.encode(str);
+//     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+//     const hashArray = Array.from(new Uint8Array(hashBuffer));
+//     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+//     return hashHex;
+// }
 const getCookie = (cookieName) => {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -96,9 +96,10 @@ window.addEventListener('load', () => {
         // Check if the countdown is finished
         if (countdownTime < 0) {
             clearInterval(countdownInterval);
-            hashString(getCurrentDate()).then(hashedString => {
-                setCookie("session_analytics_id", hashedString, 1)
-            })
+            encodeString(getCurrentDate())
+            // hashString(getCurrentDate()).then(hashedString => {
+            //     setCookie("session_analytics_id", hashedString, 1)
+            // })
             console.log("session expired!")
         }
     }, 1000);
