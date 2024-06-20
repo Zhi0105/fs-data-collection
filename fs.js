@@ -1,17 +1,11 @@
-const encryptString = (str) => {
-    return fetch('https://www.devglan.com/online-tools/jasypt-online-encryption-decryption/encrypt', {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
+const encodeString = (str) => {
+    return fetch('https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash', {
+        method: "GET",
         body: JSON.stringify({
-            inputString: str,
-            secretKey: "FPH",
-            twoWay: true
+            data: str
         })
     })
 }
-
 
 const hashString = async(str) => {
     const encoder = new TextEncoder();
@@ -78,11 +72,9 @@ const sendAnalyticsData = (data) => {
 
 }
 window.addEventListener('load', () => {
-
-    encryptString(getCurrentDate()).then(res => {
-        console.log(res)
+    encodeString(getCurrentDate()).then(res => {
+        console.log(res.data)
     })
-
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
     const countdownInterval = setInterval(() => {
@@ -163,6 +155,7 @@ window.addEventListener('load', () => {
                 chpayload.action_key = 'change hub'
                 chpayload.hub_id =  select.target.value
                 console.log("@CH:", chpayload)
+                // sendAnalyticsData(chpayload)
             });
         }
 
@@ -175,6 +168,7 @@ window.addEventListener('load', () => {
                     chpayload.hub_id =  getCookie("hub_id") 
                     chpayload.city_id = getCookie("city_id") 
                     console.log("@CH:", chpayload)
+                    // sendAnalyticsData(chpayload)
                 }, 1000);
             }
         })
@@ -193,6 +187,7 @@ window.addEventListener('load', () => {
                         pixel_back_timestamp: getCurrentDate()
                     }
                     console.log("@login:", payload)
+                    // sendAnalyticsData(payload)
                 }
                 if(String(split[split.length - 1]).toLocaleLowerCase() === 'register') { 
                     const payload = {
@@ -201,6 +196,7 @@ window.addEventListener('load', () => {
                         pixel_back_timestamp: getCurrentDate()
                     }
                     console.log("@register:", payload)
+                    // sendAnalyticsData(payload)
                 }                
             } })
         // LOGIN & REGISTRATION CLICK EVENTS END
@@ -230,13 +226,13 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@Product:", payload)
+                // sendAnalyticsData(payload)
             }
         }, 1000);
     }
     // PDP END
     // MY ACCOUNT START
     if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'my-account'){
-        console.log("My account page")
         setTimeout(() => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
@@ -244,6 +240,7 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@MA:", payload)
+                // sendAnalyticsData(payload)
         }, 1000);
     }    
     document.addEventListener('click', (ma) => {
@@ -256,6 +253,7 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@MA:", payload)
+                // sendAnalyticsData(payload)
             }, 1000);
         }
         
@@ -275,6 +273,7 @@ window.addEventListener('load', () => {
                     email: email
                 }
                 console.log("@TO:", payload)
+                // sendAnalyticsData(payload)
             }
         }
     })
@@ -289,6 +288,7 @@ window.addEventListener('load', () => {
                 pixel_back_timestamp: getCurrentDate()
             }
             console.log("@Billing:", payload)
+            // sendAnalyticsData(payload)
         }, 1000);
     }
     // BILLING END
