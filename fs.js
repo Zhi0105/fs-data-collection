@@ -1,11 +1,12 @@
-const hashString = async(str) => {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(str);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    return hashHex;
-}
+
+// const hashString = async(str) => {
+//     const encoder = new TextEncoder();
+//     const data = encoder.encode(str);
+//     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+//     const hashArray = Array.from(new Uint8Array(hashBuffer));
+//     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+//     return hashHex;
+// }
 const getCookie = (cookieName) => {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -35,6 +36,18 @@ const getCurrentDate = () => {
 const getUserIP =  () => {
     return fetch('https://api.ipify.org?format=json')
 }
+const encodeString = (str) => {
+    const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
+    fetch(url).then(res => {
+        if(res) {
+            res.json().then(data => {
+                data && setCookie("session_analytics_id", data, 1)
+            })
+        }
+    }).catch(err => {
+        console.log(err)
+    })
+}
 const sendAnalyticsData = (data) => {
     const url = 'https://bi-tools-dev.flwr.ph/api/data-collection/ph/store'
 
@@ -62,8 +75,8 @@ const sendAnalyticsData = (data) => {
 
 
 }
-
 window.addEventListener('load', () => {
+    
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
     const countdownInterval = setInterval(() => {
@@ -83,9 +96,10 @@ window.addEventListener('load', () => {
         // Check if the countdown is finished
         if (countdownTime < 0) {
             clearInterval(countdownInterval);
-            hashString(getCurrentDate()).then(hashedString => {
-                setCookie("session_analytics_id", hashedString, 1)
-            })
+            encodeString(getCurrentDate())
+            // hashString(getCurrentDate()).then(hashedString => {
+            //     setCookie("session_analytics_id", hashedString, 1)
+            // })
             console.log("session expired!")
         }
     }, 1000);
@@ -111,9 +125,11 @@ window.addEventListener('load', () => {
     if(!sliced[0]?.length || !sliced?.length) {     
 
     // SESSION START
-        hashString(getCurrentDate()).then(hashedString => {
-            !session_id && setCookie("session_analytics_id", hashedString, 1)
-        })
+        !session_id && encodeString(getCurrentDate())
+        // !session_id && hashedString && setCookie("session_analytics_id", hashedString, 1)
+        // hashString(getCurrentDate()).then(hashedString => {
+        //     !session_id && setCookie("session_analytics_id", hashedString, 1)
+        // })
     // SESSION END
 
         getUserIP().then(response => response.json())
@@ -129,7 +145,7 @@ window.addEventListener('load', () => {
             }
 
             console.log("@hp:", payload)
-            // sendAnalyticsData(payload)
+            sendAnalyticsData(payload)
 
         })
         .catch(error => console.error('Error fetching IP address:', error));
@@ -144,6 +160,7 @@ window.addEventListener('load', () => {
                 chpayload.action_key = 'change hub'
                 chpayload.hub_id =  select.target.value
                 console.log("@CH:", chpayload)
+                sendAnalyticsData(chpayload)
             });
         }
 
@@ -156,6 +173,7 @@ window.addEventListener('load', () => {
                     chpayload.hub_id =  getCookie("hub_id") 
                     chpayload.city_id = getCookie("city_id") 
                     console.log("@CH:", chpayload)
+                    sendAnalyticsData(chpayload)
                 }, 1000);
             }
         })
@@ -174,6 +192,7 @@ window.addEventListener('load', () => {
                         pixel_back_timestamp: getCurrentDate()
                     }
                     console.log("@login:", payload)
+                    sendAnalyticsData(payload)
                 }
                 if(String(split[split.length - 1]).toLocaleLowerCase() === 'register') { 
                     const payload = {
@@ -182,6 +201,7 @@ window.addEventListener('load', () => {
                         pixel_back_timestamp: getCurrentDate()
                     }
                     console.log("@register:", payload)
+                    sendAnalyticsData(payload)
                 }                
             } })
         // LOGIN & REGISTRATION CLICK EVENTS END
@@ -211,13 +231,13 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@Product:", payload)
+                sendAnalyticsData(payload)
             }
         }, 1000);
     }
     // PDP END
     // MY ACCOUNT START
     if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'my-account'){
-        console.log("My account page")
         setTimeout(() => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
@@ -225,6 +245,7 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@MA:", payload)
+                sendAnalyticsData(payload)
         }, 1000);
     }    
     document.addEventListener('click', (ma) => {
@@ -237,6 +258,7 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@MA:", payload)
+                sendAnalyticsData(payload)
             }, 1000);
         }
         
@@ -256,11 +278,11 @@ window.addEventListener('load', () => {
                     email: email
                 }
                 console.log("@TO:", payload)
+                sendAnalyticsData(payload)
             }
         }
     })
     // TRACK ORDER END
-
 
     // BILLING START
     if(sliced?.length && sliced[sliced?.length - 1]?.toLowerCase() === 'information'){
@@ -271,10 +293,10 @@ window.addEventListener('load', () => {
                 pixel_back_timestamp: getCurrentDate()
             }
             console.log("@Billing:", payload)
+            sendAnalyticsData(payload)
         }, 1000);
     }
     // BILLING END
-
 
     // PAYMENT START
 
