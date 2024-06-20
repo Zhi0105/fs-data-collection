@@ -1,5 +1,5 @@
-const encodeString = (str) => {
-    return fetch('https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash', {
+const encodeString = async(str) => {
+    return await fetch('https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash', {
         method: "GET",
         body: JSON.stringify({
             data: str
