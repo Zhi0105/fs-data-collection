@@ -1,3 +1,18 @@
+const encryptString = (str) => {
+    return fetch('https://www.devglan.com/online-tools/jasypt-online-encryption-decryption/encrypt', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            inputString: str,
+            secretKey: "FPH",
+            twoWay: true
+        })
+    })
+}
+
+
 const hashString = async(str) => {
     const encoder = new TextEncoder();
     const data = encoder.encode(str);
@@ -62,8 +77,12 @@ const sendAnalyticsData = (data) => {
 
 
 }
-
 window.addEventListener('load', () => {
+
+    encryptString(getCurrentDate()).then(res => {
+        console.log(res)
+    })
+
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
     const countdownInterval = setInterval(() => {
@@ -261,7 +280,6 @@ window.addEventListener('load', () => {
     })
     // TRACK ORDER END
 
-
     // BILLING START
     if(sliced?.length && sliced[sliced?.length - 1]?.toLowerCase() === 'information'){
         setTimeout(() => {
@@ -274,7 +292,6 @@ window.addEventListener('load', () => {
         }, 1000);
     }
     // BILLING END
-
 
     // PAYMENT START
 
