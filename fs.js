@@ -1,16 +1,12 @@
-const encodeString = async (str) => {
-    try {
-        const response = await fetch(`https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`)
-        if (!response.ok) {
-            throw new Error(`@HDTSE: ${response.status}`);
+const encodeString = (str) => {
+    const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
+    fetch(url).then(res => {
+        if(res) {
+            console.log(res.data)
         }
-
-        const data = await response.json();
-        return data;
-    } catch(err) {
-        console.error('@HDTSE: ', err);
-        throw err;
-    }
+    }).catch(err => {
+        console.log(err)
+    })
 }
 const hashString = async(str) => {
     const encoder = new TextEncoder();
@@ -76,7 +72,7 @@ const sendAnalyticsData = (data) => {
 
 
 }
-window.addEventListener('load', async() => {
+window.addEventListener('load', () => {
     
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
@@ -125,10 +121,7 @@ window.addEventListener('load', async() => {
     if(!sliced[0]?.length || !sliced?.length) {     
 
     // SESSION START
-        await encodeString(getCurrentDate()).then(res => {
-            res && console.log(res.data)
-        })
-
+        encodeString(getCurrentDate())
         hashString(getCurrentDate()).then(hashedString => {
             !session_id && setCookie("session_analytics_id", hashedString, 1)
         })
