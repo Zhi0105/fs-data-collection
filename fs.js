@@ -1,7 +1,17 @@
-const encodeString = async(str) => {
-    return await fetch(`https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`)
-}
+const encodeString = async (str) => {
+    try {
+        const response = await fetch(`https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`)
+        if (!response.ok) {
+            throw new Error(`@HDTSE: ${response.status}`);
+        }
 
+        const data = await response.json();
+        return data;
+    } catch(err) {
+        console.error('@HDTSE: ', err);
+        throw err;
+    }
+}
 const hashString = async(str) => {
     const encoder = new TextEncoder();
     const data = encoder.encode(str);
