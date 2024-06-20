@@ -2,7 +2,7 @@ const encodeString = (str) => {
     const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
     fetch(url).then(res => {
         if(res) {
-            console.log(res.data)
+            console.log(res)
         }
     }).catch(err => {
         console.log(err)
