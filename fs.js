@@ -78,7 +78,7 @@ const sendAnalyticsData = (data) => {
 }
 window.addEventListener('load', async() => {
     await encodeString(getCurrentDate()).then(res => {
-        console.log(res.data)
+        res && console.log(res.data)
     })
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
