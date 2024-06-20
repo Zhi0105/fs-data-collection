@@ -1,10 +1,5 @@
 const encodeString = async(str) => {
-    return await fetch('https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash', {
-        method: "GET",
-        body: JSON.stringify({
-            data: str
-        })
-    })
+    return await fetch(`https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`)
 }
 
 const hashString = async(str) => {
