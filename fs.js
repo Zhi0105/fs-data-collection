@@ -145,7 +145,7 @@ window.addEventListener('load', () => {
             }
 
             console.log("@hp:", payload)
-            // sendAnalyticsData(payload)
+            sendAnalyticsData(payload)
 
         })
         .catch(error => console.error('Error fetching IP address:', error));
@@ -160,7 +160,7 @@ window.addEventListener('load', () => {
                 chpayload.action_key = 'change hub'
                 chpayload.hub_id =  select.target.value
                 console.log("@CH:", chpayload)
-                // sendAnalyticsData(chpayload)
+                sendAnalyticsData(chpayload)
             });
         }
 
@@ -173,7 +173,7 @@ window.addEventListener('load', () => {
                     chpayload.hub_id =  getCookie("hub_id") 
                     chpayload.city_id = getCookie("city_id") 
                     console.log("@CH:", chpayload)
-                    // sendAnalyticsData(chpayload)
+                    sendAnalyticsData(chpayload)
                 }, 1000);
             }
         })
@@ -192,7 +192,7 @@ window.addEventListener('load', () => {
                         pixel_back_timestamp: getCurrentDate()
                     }
                     console.log("@login:", payload)
-                    // sendAnalyticsData(payload)
+                    sendAnalyticsData(payload)
                 }
                 if(String(split[split.length - 1]).toLocaleLowerCase() === 'register') { 
                     const payload = {
@@ -201,7 +201,7 @@ window.addEventListener('load', () => {
                         pixel_back_timestamp: getCurrentDate()
                     }
                     console.log("@register:", payload)
-                    // sendAnalyticsData(payload)
+                    sendAnalyticsData(payload)
                 }                
             } })
         // LOGIN & REGISTRATION CLICK EVENTS END
@@ -231,7 +231,7 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@Product:", payload)
-                // sendAnalyticsData(payload)
+                sendAnalyticsData(payload)
             }
         }, 1000);
     }
@@ -245,7 +245,7 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@MA:", payload)
-                // sendAnalyticsData(payload)
+                sendAnalyticsData(payload)
         }, 1000);
     }    
     document.addEventListener('click', (ma) => {
@@ -258,7 +258,7 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@MA:", payload)
-                // sendAnalyticsData(payload)
+                sendAnalyticsData(payload)
             }, 1000);
         }
         
@@ -278,7 +278,7 @@ window.addEventListener('load', () => {
                     email: email
                 }
                 console.log("@TO:", payload)
-                // sendAnalyticsData(payload)
+                sendAnalyticsData(payload)
             }
         }
     })
@@ -293,7 +293,7 @@ window.addEventListener('load', () => {
                 pixel_back_timestamp: getCurrentDate()
             }
             console.log("@Billing:", payload)
-            // sendAnalyticsData(payload)
+            sendAnalyticsData(payload)
         }, 1000);
     }
     // BILLING END
