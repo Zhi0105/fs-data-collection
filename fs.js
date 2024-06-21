@@ -223,11 +223,14 @@ window.addEventListener('load', () => {
     if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'product'){
         setTimeout(() => {
             const price = document.querySelector('div[class="justify-self-end text-brand"] span').textContent
-             if(price){
+            const divElement = document.querySelector('#app')
+             if(price && divElement){
+                const data = JSON.parse(divElement.getAttribute('data-page'))
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'click_product',
                     price: price,
+                    product_id: data?.props.product.id,
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@Product:", payload)
