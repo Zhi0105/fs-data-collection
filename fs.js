@@ -230,10 +230,10 @@ window.addEventListener('load', () => {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'click_product',
                     price: price,
+                    product_id: data?.props.product.id,
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@Product:", payload)
-                console.log('@data:', data)
                 sendAnalyticsData(payload)
             }
         }, 1000);
