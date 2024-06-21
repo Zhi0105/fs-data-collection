@@ -223,7 +223,9 @@ window.addEventListener('load', () => {
     if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'product'){
         setTimeout(() => {
             const price = document.querySelector('div[class="justify-self-end text-brand"] span').textContent
-             if(price){
+            const divElement = document.querySelector('#app')
+             if(price && divElement){
+                const data = divElement.getAttribute('data-page')
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'click_product',
@@ -231,6 +233,7 @@ window.addEventListener('load', () => {
                     pixel_back_timestamp: getCurrentDate()
                 }
                 console.log("@Product:", payload)
+                console.log('@data:', JSON.stringify(data))
                 sendAnalyticsData(payload)
             }
         }, 1000);
