@@ -1,12 +1,12 @@
 
-// const hashString = async(str) => {
-//     const encoder = new TextEncoder();
-//     const data = encoder.encode(str);
-//     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-//     const hashArray = Array.from(new Uint8Array(hashBuffer));
-//     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-//     return hashHex;
-// }
+const hashString = async(str) => {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
 const getCookie = (cookieName) => {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -36,18 +36,18 @@ const getCurrentDate = () => {
 const getUserIP =  () => {
     return fetch('https://api.ipify.org?format=json')
 }
-const encodeString = (str) => {
-    const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
-    fetch(url).then(res => {
-        if(res) {
-            res.json().then(data => {
-                data && setCookie("session_analytics_id", data, 1)
-            })
-        }
-    }).catch(err => {
-        console.log(err)
-    })
-}
+// const encodeString = (str) => {
+//     const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
+//     fetch(url).then(res => {
+//         if(res) {
+//             res.json().then(data => {
+//                 data && setCookie("session_analytics_id", data, 1)
+//             })
+//         }
+//     }).catch(err => {
+//         console.log(err)
+//     })
+// }
 const sendAnalyticsData = (data) => {
     const url = 'https://bi-tools-dev.flwr.ph/api/data-collection/ph/store'
 
@@ -96,10 +96,10 @@ window.addEventListener('load', () => {
         // Check if the countdown is finished
         if (countdownTime < 0) {
             clearInterval(countdownInterval);
-            encodeString(getCurrentDate())
-            // hashString(getCurrentDate()).then(hashedString => {
-            //     setCookie("session_analytics_id", hashedString, 1)
-            // })
+            // encodeString(getCurrentDate())
+            hashString(getCurrentDate()).then(hashedString => {
+                setCookie("session_analytics_id", hashedString, 1)
+            })
             console.log("session expired!")
         }
     }, 1000);
@@ -125,11 +125,11 @@ window.addEventListener('load', () => {
     if(!sliced[0]?.length || !sliced?.length) {     
 
     // SESSION START
-        !session_id && encodeString(getCurrentDate())
+        // !session_id && encodeString(getCurrentDate())
         // !session_id && hashedString && setCookie("session_analytics_id", hashedString, 1)
-        // hashString(getCurrentDate()).then(hashedString => {
-        //     !session_id && setCookie("session_analytics_id", hashedString, 1)
-        // })
+        hashString(getCurrentDate()).then(hashedString => {
+            !session_id && setCookie("session_analytics_id", hashedString, 1)
+        })
     // SESSION END
 
         getUserIP().then(response => response.json())
