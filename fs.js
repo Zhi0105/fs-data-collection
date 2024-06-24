@@ -295,14 +295,30 @@ window.addEventListener('load', () => {
                 action_key: 'click_shipping',
                 pixel_back_timestamp: getCurrentDate()
             }
-            console.log("@Billing:", payload)
+            console.log("@Shipping:", payload)
             sendAnalyticsData(payload)
         }, 1000);
     }
     // BILLING END
 
     // PAYMENT START
-
+    document.addEventListener('click', (payment) => {
+        const paymethod = payment.target.closest('div[class="text-center lg:flex lg:justify-between mt-6"] button')
+        if(paymethod) {
+            setTimeout(() => {
+            const url = window.location.href.split("/")
+                if(url[url.length - 1].toLowerCase() === 'payment') {
+                    const payload = {
+                        session_id: getCookie("session_analytics_id"),
+                        action_key: 'click_payment',
+                        pixel_back_timestamp: getCurrentDate()
+                    }
+                    console.log("@Payment:", payload)
+                    sendAnalyticsData(payload)
+                }
+            }, 1500);
+        }
+    })
     // PAYMENNT END
 })
 
