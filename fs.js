@@ -307,7 +307,7 @@ window.addEventListener('load', () => {
     })
     const config = { childList: true, subtree: true }
     const targetNode = document.querySelector('section[class="shadow"]')
-    mutationObserver.observe(targetNode, config)
+    targetNode && mutationObserver.observe(targetNode, config)
     // PAYMENNT END
 })
 
