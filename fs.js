@@ -302,10 +302,12 @@ window.addEventListener('load', () => {
     // BILLING END
 
     // PAYMENT START
-    document.addEventListener('click', (payment) => {
-        const paymethod = payment.target.closest('section[class="shadow"]')
-        paymethod && console.log(paymethod)
+    const mutationObserver = new MutationObserver(entries => {
+        console.log(entries)
     })
+    const config = { childList: true, subtree: true }
+    const targetNode = document.querySelector('section[class="shadow"]')
+    mutationObserver.observe(targetNode, config)
     // PAYMENNT END
 })
 
