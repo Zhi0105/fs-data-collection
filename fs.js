@@ -286,7 +286,22 @@ window.addEventListener('load', () => {
         }
     })
     // TRACK ORDER END
-
+    // CATEGORY START
+    document.addEventListener('click', (category) => {
+        const subcat = category.target.closest('div[class="nav-container"] div a')
+        if(subcat) {
+            setTimeout(() => {
+                const payload = {
+                    session_id: getCookie("session_analytics_id"),
+                    action_key: 'click_category',
+                    pixel_back_timestamp: getCurrentDate()
+                }
+                    console.log("@Category:", payload)
+                    sendAnalyticsData(payload)
+            }, 1500);
+        }
+    })
+    // CATEGORY END
     // BILLING START
     if(sliced?.length && sliced[sliced?.length - 1]?.toLowerCase() === 'information'){
         setTimeout(() => {
@@ -300,7 +315,6 @@ window.addEventListener('load', () => {
         }, 1000);
     }
     // BILLING END
-
     // PAYMENT START
     document.addEventListener('click', (payment) => {
         const paymethod = payment.target.closest('div[class="text-center lg:flex lg:justify-between mt-6"] button')
