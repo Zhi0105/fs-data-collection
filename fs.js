@@ -306,13 +306,18 @@ window.addEventListener('load', () => {
     // COLLECTION START
     if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'collection'){
         setTimeout(() => {
-                const payload = {
-                    session_id: getCookie("session_analytics_id"),
-                    action_key: 'click_collection',
-                    pixel_back_timestamp: getCurrentDate()
+                const divElement = document.querySelector('#app')
+                if(divElement){
+                    const data = JSON.parse(divElement.getAttribute('data-page'))
+                    console.log("@data:", data)
+                    const payload = {
+                        session_id: getCookie("session_analytics_id"),
+                        action_key: 'click_collection',
+                        pixel_back_timestamp: getCurrentDate()
+                    }
+                    console.log("@Collection:", payload)
+                    sendAnalyticsData(payload)
                 }
-                console.log("@Collection:", payload)
-                sendAnalyticsData(payload)
         }, 1000);
     } 
     // COLLECTION END
