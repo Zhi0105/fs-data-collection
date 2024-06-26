@@ -302,6 +302,26 @@ window.addEventListener('load', () => {
         }
     })
     // CATEGORY END
+
+    // COLLECTION START
+    if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'collection'){
+        setTimeout(() => {
+                const divElement = document.querySelector('#app')
+                if(divElement){
+                    const data = JSON.parse(divElement.getAttribute('data-page'))
+                    const payload = {
+                        session_id: getCookie("session_analytics_id"),
+                        action_key: 'click_collection',
+                        collection_id: data?.props.collection_id,
+                        pixel_back_timestamp: getCurrentDate()
+                    }
+                    console.log("@Collection:", payload)
+                    sendAnalyticsData(payload)
+                }
+        }, 1000);
+    } 
+    // COLLECTION END
+
     // BILLING START
     if(sliced?.length && sliced[sliced?.length - 1]?.toLowerCase() === 'information'){
         setTimeout(() => {
