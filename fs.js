@@ -322,6 +322,20 @@ window.addEventListener('load', () => {
     } 
     // COLLECTION END
 
+    // PAGE EVENT START
+    if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'page'){
+        setTimeout(() => {
+            const payload = {
+                session_id: getCookie("session_analytics_id"),
+                action_key: 'click_page',
+                pixel_back_timestamp: getCurrentDate()
+            }
+            console.log("@page:", payload)
+            sendAnalyticsData(payload)
+        }, 1000);
+    }
+    // PAGE EVENT END
+    
     // BILLING START
     if(sliced?.length && sliced[sliced?.length - 1]?.toLowerCase() === 'information'){
         setTimeout(() => {
