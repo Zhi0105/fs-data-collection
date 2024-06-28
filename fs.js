@@ -324,7 +324,15 @@ window.addEventListener('load', () => {
 
     // PAGE EVENT START
     if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'page'){
-        console.log('you are on page pages!')
+        setTimeout(() => {
+            const payload = {
+                session_id: getCookie("session_analytics_id"),
+                action_key: 'click_page',
+                pixel_back_timestamp: getCurrentDate()
+            }
+            console.log("@page:", payload)
+            sendAnalyticsData(payload)
+        }, 1000);
     }
     // PAGE EVENT END
     
