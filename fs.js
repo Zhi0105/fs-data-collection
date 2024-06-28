@@ -322,6 +322,12 @@ window.addEventListener('load', () => {
     } 
     // COLLECTION END
 
+    // PAGE EVENT START
+    if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'page'){
+        console.log('you are on page pages!')
+    }
+    // PAGE EVENT END
+    
     // BILLING START
     if(sliced?.length && sliced[sliced?.length - 1]?.toLowerCase() === 'information'){
         setTimeout(() => {
