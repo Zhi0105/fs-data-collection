@@ -271,13 +271,13 @@ window.addEventListener('load', () => {
     document.addEventListener('click', (trackevent) => {
         const trackorder = trackevent.target.closest('div[class="text-right"] button')
         if(trackorder) {
-            const order = document.querySelector('input[name="order_name"]').value
+            const order = document.querySelector('input[name="order_name"]').value.split('-')
             const email = document.querySelector('input[name="contact_email"]').value
             if(order && email) {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'track_order',
-                    order_number: order,
+                    order_number: Number(order[order.length - 1]),
                     email: email
                 }
                 console.log("@TO:", payload)
