@@ -398,6 +398,9 @@ window.addEventListener('load', () => {
     // PAYMENNT END
 
     // RELOAD EVENT START
+    if(document.referrer.toString().toLowerCase() === window.location.href.toString().toLowerCase()) {
+        console.log("refreshed!")
+    }
     // RELOAD EVENT END
 })
 
