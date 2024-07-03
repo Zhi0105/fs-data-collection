@@ -141,7 +141,9 @@ window.addEventListener('load', () => {
                 source_id: current_url.toLowerCase() === 'https://potico.ph/' ? 5 : 1,
                 hub_id: getCookie("hub_id") ? getCookie("hub_id")  : 1,
                 user_agent: window.navigator.userAgent,
-                ip_address: data.ip
+                ip_address: data.ip,
+                referrer: document.referrer,
+                url: window.location.href
             }
 
             console.log("@hp:", payload)
@@ -231,7 +233,9 @@ window.addEventListener('load', () => {
                     action_key: 'click_product',
                     price: price,
                     product_id: data?.props.product.id,
-                    pixel_back_timestamp: getCurrentDate()
+                    pixel_back_timestamp: getCurrentDate(),
+                    referrer: document.referrer,
+                    url: window.location.href
                 }
                 console.log("@Product:", payload)
                 sendAnalyticsData(payload)
