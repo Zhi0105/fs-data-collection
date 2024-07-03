@@ -398,9 +398,14 @@ window.addEventListener('load', () => {
     // PAYMENNT END
 
     // RELOAD EVENT START
-    if(document.referrer.toString().toLowerCase() === window.location.href.toString().toLowerCase()) {
-        console.log("refreshed!")
-    }
+    setTimeout(() => {
+        console.log("@Referrer:", document.referrer.toString().toLowerCase())
+        console.log("@url:", window.location.hreftoString().toLowerCase())
+    
+        if(document.referrer.toString().toLowerCase() === window.location.href.toString().toLowerCase()) {
+            console.log("refreshed!")
+        }
+    }, 2000);
     // RELOAD EVENT END
 })
 
