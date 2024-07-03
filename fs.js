@@ -141,7 +141,9 @@ window.addEventListener('load', () => {
                 source_id: current_url.toLowerCase() === 'https://potico.ph/' ? 5 : 1,
                 hub_id: getCookie("hub_id") ? getCookie("hub_id")  : 1,
                 user_agent: window.navigator.userAgent,
-                ip_address: data.ip
+                ip_address: data.ip,
+                referrer: document.referrer,
+                url: window.location.href
             }
 
             console.log("@hp:", payload)
@@ -159,6 +161,8 @@ window.addEventListener('load', () => {
                 chpayload.session_id = getCookie("session_analytics_id")
                 chpayload.action_key = 'change_hub'
                 chpayload.hub_id =  select.target.value
+                chpayload.referrer = document.referrer,
+                chpayload.url = window.location.href
                 console.log("@CH:", chpayload)
                 sendAnalyticsData(chpayload)
             });
@@ -172,6 +176,8 @@ window.addEventListener('load', () => {
                     chpayload.action_key = 'change_hub'
                     chpayload.hub_id =  getCookie("hub_id") 
                     chpayload.city_id = getCookie("city_id") 
+                    chpayload.referrer = document.referrer,
+                    chpayload.url = window.location.href
                     console.log("@CH:", chpayload)
                     sendAnalyticsData(chpayload)
                 }, 1000);
@@ -189,7 +195,9 @@ window.addEventListener('load', () => {
                     const payload = {
                         session_id: getCookie("session_analytics_id"),
                         action_key: 'click_login',
-                        pixel_back_timestamp: getCurrentDate()
+                        pixel_back_timestamp: getCurrentDate(),
+                        referrer: document.referrer,
+                        url: window.location.href
                     }
                     console.log("@login:", payload)
                     sendAnalyticsData(payload)
@@ -198,7 +206,9 @@ window.addEventListener('load', () => {
                     const payload = {
                         session_id: getCookie("session_analytics_id"),
                         action_key: 'click_registration',
-                        pixel_back_timestamp: getCurrentDate()
+                        pixel_back_timestamp: getCurrentDate(),
+                        referrer: document.referrer,
+                        url: window.location.href
                     }
                     console.log("@register:", payload)
                     sendAnalyticsData(payload)
@@ -231,7 +241,9 @@ window.addEventListener('load', () => {
                     action_key: 'click_product',
                     price: price,
                     product_id: data?.props.product.id,
-                    pixel_back_timestamp: getCurrentDate()
+                    pixel_back_timestamp: getCurrentDate(),
+                    referrer: document.referrer,
+                    url: window.location.href
                 }
                 console.log("@Product:", payload)
                 sendAnalyticsData(payload)
@@ -245,7 +257,9 @@ window.addEventListener('load', () => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'click_my_account',
-                    pixel_back_timestamp: getCurrentDate()
+                    pixel_back_timestamp: getCurrentDate(),
+                    referrer: document.referrer,
+                    url: window.location.href
                 }
                 console.log("@MA:", payload)
                 sendAnalyticsData(payload)
@@ -258,7 +272,9 @@ window.addEventListener('load', () => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'click_my_account',
-                    pixel_back_timestamp: getCurrentDate()
+                    pixel_back_timestamp: getCurrentDate(),
+                    referrer: document.referrer,
+                    url: window.location.href
                 }
                 console.log("@MA:", payload)
                 sendAnalyticsData(payload)
@@ -278,7 +294,9 @@ window.addEventListener('load', () => {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'track_order',
                     order_number: Number(order[order.length - 1]),
-                    email: email
+                    email: email,
+                    referrer: document.referrer,
+                    url: window.location.href
                 }
                 console.log("@TO:", payload)
                 sendAnalyticsData(payload)
@@ -294,7 +312,9 @@ window.addEventListener('load', () => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
                     action_key: 'click_category',
-                    pixel_back_timestamp: getCurrentDate()
+                    pixel_back_timestamp: getCurrentDate(),
+                    referrer: document.referrer,
+                    url: window.location.href
                 }
                     console.log("@Category:", payload)
                     sendAnalyticsData(payload)
@@ -313,7 +333,9 @@ window.addEventListener('load', () => {
                         session_id: getCookie("session_analytics_id"),
                         action_key: 'click_collection',
                         collection_id: data?.props.collection_id,
-                        pixel_back_timestamp: getCurrentDate()
+                        pixel_back_timestamp: getCurrentDate(),
+                        referrer: document.referrer,
+                        url: window.location.href
                     }
                     console.log("@Collection:", payload)
                     sendAnalyticsData(payload)
@@ -328,7 +350,9 @@ window.addEventListener('load', () => {
             const payload = {
                 session_id: getCookie("session_analytics_id"),
                 action_key: 'click_page',
-                pixel_back_timestamp: getCurrentDate()
+                pixel_back_timestamp: getCurrentDate(),
+                referrer: document.referrer,
+                url: window.location.href
             }
             console.log("@page:", payload)
             sendAnalyticsData(payload)
@@ -342,7 +366,9 @@ window.addEventListener('load', () => {
             const payload = {
                 session_id: getCookie("session_analytics_id"),
                 action_key: 'click_shipping',
-                pixel_back_timestamp: getCurrentDate()
+                pixel_back_timestamp: getCurrentDate(),
+                referrer: document.referrer,
+                url: window.location.href
             }
             console.log("@Shipping:", payload)
             sendAnalyticsData(payload)
@@ -359,7 +385,9 @@ window.addEventListener('load', () => {
                     const payload = {
                         session_id: getCookie("session_analytics_id"),
                         action_key: 'click_payment',
-                        pixel_back_timestamp: getCurrentDate()
+                        pixel_back_timestamp: getCurrentDate(),
+                        referrer: document.referrer,
+                        url: window.location.href
                     }
                     console.log("@Payment:", payload)
                     sendAnalyticsData(payload)
