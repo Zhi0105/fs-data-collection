@@ -400,7 +400,7 @@ window.addEventListener('load', () => {
     // RELOAD EVENT START
     setTimeout(() => {
         console.log("@Referrer:", document.referrer.toString().toLowerCase())
-        console.log("@url:", window.location.hreftoString().toLowerCase())
+        console.log("@url:", window.location.href.toString().toLowerCase())
     
         if(document.referrer.toString().toLowerCase() === window.location.href.toString().toLowerCase()) {
             console.log("refreshed!")
