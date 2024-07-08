@@ -107,8 +107,8 @@ window.addEventListener('load', () => {
     
     const session_id = getCookie("session_analytics_id")
     const current_url_array = []
-    const current_url = window.location.href 
-    const split = current_url.split("/")
+    const current_uri = window.location.href 
+    const split = current_uri.split("/")
 
     split.map((item) => {
         item.length && current_url_array.push(item)
@@ -138,7 +138,7 @@ window.addEventListener('load', () => {
                 session_id: getCookie("session_analytics_id"),
                 action_key: 'entrance',
                 page_entrance: 'page',
-                source_id: current_url.toLowerCase() === 'https://potico.ph/' ? 5 : 1,
+                source_id: current_uri.toLowerCase() === 'https://potico.ph/' ? 5 : 1,
                 hub_id: getCookie("hub_id") ? getCookie("hub_id")  : 1,
                 user_agent: window.navigator.userAgent,
                 ip_address: data.ip,
