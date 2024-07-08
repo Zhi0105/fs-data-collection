@@ -396,9 +396,11 @@ window.addEventListener('load', () => {
         }
     })
     // PAYMENNT END
+
+    //  BACK BUTTON START
+    window.addEventListener('popstate', () => {
+        console.log("back button triggered!")
+    })
+    //  BACK BUTTON END
+
 })
-//  BACK BUTTON START
-window.addEventListener('popstate', () => {
-    console.log("back button triggered!")
-})
-//  BACK BUTTON END
