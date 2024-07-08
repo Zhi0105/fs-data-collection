@@ -79,12 +79,12 @@ const sendAnalyticsData = (data) => {
 
 window.addEventListener('load', () => {
     //  BACK BUTTON START
+    
+    window.history.pushState(null, null, document.URL); // PUSH HISTORY STATE
+    
     window.addEventListener('popstate', () => {
         console.log("back button triggered!")
     })
-
-    window.history.pushState(null, null, document.URL); // PUSH HISTORY STATE
-
     //  BACK BUTTON END
 
     
