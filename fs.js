@@ -75,6 +75,14 @@ const sendAnalyticsData = (data) => {
 
 
 }
+
+
+//  BACK BUTTON START
+window.addEventListener('popstate', () => {
+    console.log("back button triggered!")
+})
+//  BACK BUTTON END
+
 window.addEventListener('load', () => {
     
     // SESSION TIME LIMIT START
@@ -110,6 +118,7 @@ window.addEventListener('load', () => {
     const current_uri = window.location.href 
     const split = current_uri.split("/")
 
+
     split.map((item) => {
         item.length && current_url_array.push(item)
     })
@@ -120,6 +129,8 @@ window.addEventListener('load', () => {
 
     // SLICED URL BASED ON PREFIX INDEX + 1 INDEX TO GET URL ENDPOINT
     const sliced = split.slice(prefixIndex + 1)
+
+    window.history.pushState(null, '', current_uri); // PUSH HISTORY STATE
 
     // HOME PAGE START
     if(!sliced[0]?.length || !sliced?.length) {     
@@ -396,11 +407,4 @@ window.addEventListener('load', () => {
         }
     })
     // PAYMENNT END
-
-    //  BACK BUTTON START
-    window.addEventListener('popstate', () => {
-        console.log("back button triggered!")
-    })
-    //  BACK BUTTON END
-
 })
