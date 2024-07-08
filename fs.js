@@ -81,6 +81,9 @@ const sendAnalyticsData = (data) => {
 window.addEventListener('popstate', () => {
     console.log("back button triggered!")
 })
+
+window.history.pushState(null, null, document.URL); // PUSH HISTORY STATE
+
 //  BACK BUTTON END
 
 window.addEventListener('load', () => {
@@ -130,7 +133,6 @@ window.addEventListener('load', () => {
     // SLICED URL BASED ON PREFIX INDEX + 1 INDEX TO GET URL ENDPOINT
     const sliced = split.slice(prefixIndex + 1)
 
-    window.history.pushState(null, '', current_uri); // PUSH HISTORY STATE
 
     // HOME PAGE START
     if(!sliced[0]?.length || !sliced?.length) {     
