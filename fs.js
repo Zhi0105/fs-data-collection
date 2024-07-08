@@ -396,16 +396,9 @@ window.addEventListener('load', () => {
         }
     })
     // PAYMENNT END
-
-    // RELOAD EVENT START
-    setTimeout(() => {
-        console.log("@Referrer:", document.referrer.toString().toLowerCase())
-        console.log("@url:", window.location.href.toString().toLowerCase())
-    
-        if(document.referrer.toString().toLowerCase() === window.location.href.toString().toLowerCase()) {
-            console.log("refreshed!")
-        }
-    }, 2000);
-    // RELOAD EVENT END
 })
-
+//  BACK BUTTON START
+window.addEventListener('popstate', () => {
+    console.log("back button triggered!")
+})
+//  BACK BUTTON END
