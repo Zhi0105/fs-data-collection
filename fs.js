@@ -76,18 +76,14 @@ const sendAnalyticsData = (data) => {
 
 }
 
+  //  BACK BUTTON START
+window.onpopstate = function() {
+    alert("clicked back button");
+}; history.pushState({}, '');
+//  BACK BUTTON END
 
 window.addEventListener('load', () => {
-    //  BACK BUTTON START
-    
-    window.history.pushState(null, null, document.URL); // PUSH HISTORY STATE
-    
-    window.addEventListener('popstate', () => {
-        console.log("back button triggered!")
-    })
-    //  BACK BUTTON END
-
-    
+  
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
     const countdownInterval = setInterval(() => {
