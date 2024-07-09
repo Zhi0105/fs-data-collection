@@ -78,7 +78,7 @@ const sendAnalyticsData = (data) => {
 
   //  BACK BUTTON START
 window.onpopstate = function() {
-    alert("clicked back button");
+    console.log("clicked back button");
 }; history.pushState({}, '');
 //  BACK BUTTON END
 
