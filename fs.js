@@ -76,33 +76,49 @@ const sendAnalyticsData = (data) => {
 
 }
 
-let historyStates = [];
+let stateStack = [];
+let currentIndex = -1;
 
-function initializeHistoryState() {
-// Push an initial state with a timestamp
-history.pushState({ timestamp: Date.now() }, '');
-historyStates.push(window.history.state.timestamp);
-}
-
-window.addEventListener('popstate', () => {
-    if (historyStates.length > 0) {
-    const currentState = window.history.state ? window.history.state.timestamp : null;
-    const previousState = historyStates[historyStates.length - 1];
-
-    if (currentState && currentState < previousState) {
-        console.log('Back button was clicked');
-    } else if (currentState && currentState > previousState) {
-        console.log('Forward button was clicked');
+    // Push new state to history
+    function pushNewState(state) {
+        const newState = { page: state, index: stateStack.length };
+        history.pushState(newState, '', `#${state}`);
+        stateStack.push(newState);
+        currentIndex = newState.index;
+        // document.getElementById('content').innerText = `Current State: ${state}`;
+        console.log('New state pushed:', newState);
     }
 
-    // Remove the last state since we've moved to a new state
-    historyStates.pop();
-    }
-});
+    // Handle popstate event
+    window.addEventListener('popstate', (evt) => {
+        const state = evt.state;
+
+        if (state) {
+            const newIndex = state.index;
+
+            if (newIndex < currentIndex) {
+                console.log('Back button pressed');
+                handleBackButton(state);
+            } else if (newIndex > currentIndex) {
+                console.log('Forward button pressed');
+                handleForwardButton(state);
+            }
+
+            currentIndex = newIndex;
+            document.getElementById('content').innerText = `Current State: ${state.page}`;
+        }
+    });
+
+    // Initial state setup
+    window.onload = () => {
+        const initialState = { page: 'initial', index: 0 };
+        history.replaceState(initialState, '', location.href);
+        stateStack.push(initialState);
+        currentIndex = initialState.index;
+        console.log('Initial state set:', initialState);
+    };
 
 window.addEventListener('load', () => {
-
-    initializeHistoryState();
 
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
@@ -150,6 +166,16 @@ window.addEventListener('load', () => {
     const sliced = split.slice(prefixIndex + 1)
 
 
+    document.addEventListener('click', (evt) => {
+        const anchor = evt.target.closest('a')
+        if(anchor) {
+            setTimeout(() => {
+                pushNewState({ page: anchor.href }, "", anchor.href)
+            }, 2000);
+        }
+    })
+
+
     //  RELOAD BUTTON START
     if (performance.getEntriesByType("navigation").length > 0) {
         // Get the PerformanceNavigationTiming object
@@ -157,9 +183,9 @@ window.addEventListener('load', () => {
         // Extract and log various timing properties
             navigationTiming.type.toLowerCase() === 'reload' && console.log("refreshed listened!")
         
-      } else {
-        console.log("Navigation Timing API not supported by this browser.");
-      }
+    } else {
+    console.log("Navigation Timing API not supported by this browser.");
+    }
     //  RELOAD BUTTON END
 
 
