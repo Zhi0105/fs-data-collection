@@ -131,8 +131,9 @@ window.addEventListener('load', () => {
         // Get the PerformanceNavigationTiming object
         const [navigationTiming] = performance.getEntriesByType("navigation");
         // Extract and log various timing properties
-     
-        console.log("Type:", navigationTiming.type);
+            navigationTiming.type.toLowerCase() === 'reload' && console.log("refreshed listened!")
+            navigationTiming.type.toLowerCase() === 'back_forward' && console.log("nextpage event listened!")
+        
       } else {
         console.log("Navigation Timing API not supported by this browser.");
       }
