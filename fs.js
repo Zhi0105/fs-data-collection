@@ -76,9 +76,6 @@ const sendAnalyticsData = (data) => {
 
 }
 
-let historyStack = [];
-let currentIndex = -1;
-
   //  BACK/FORWARD BUTTON START
   window.onpopstate = function(evt) {
     const newState = evt.state;
@@ -87,32 +84,12 @@ let currentIndex = -1;
         return; // Handle the initial page load case if needed
     }
     
-    // Determine the direction
-    if (currentIndex >= 0 && historyStack[currentIndex] !== newState) {
-        if (currentIndex > 0 && historyStack[currentIndex - 1] === newState) {
-            console.log('Back button pressed');
-            currentIndex--;
-        } else if (currentIndex < historyStack.length - 1 && historyStack[currentIndex + 1] === newState) {
-            console.log('Forward button pressed');
-            currentIndex++;
-        }
-    }
-    
-    // Update the history stack if needed
-    if (currentIndex === -1 || historyStack[currentIndex] !== newState) {
-        historyStack.push(newState);
-        currentIndex++;
-    }
+    console.log(newState)
 }; 
 
-// Example of pushing state to history
-function pushState(state, title, url) {
-    history.pushState(state, title, url);
-    historyStack.push(state);
-    currentIndex++;
-}
 
-history.pushState(null, null, document.URL);
+
+history.pushState({}, '');
 
 //  BACK/FORWARD BUTTON END
 window.addEventListener('load', () => {
