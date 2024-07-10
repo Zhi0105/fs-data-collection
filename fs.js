@@ -76,27 +76,7 @@ const sendAnalyticsData = (data) => {
 
 }
 
-  //  BACK BUTTON START
-  window.addEventListener('unload', function(event) {
-    if (event.currentTarget.performance && event.currentTarget.performance.navigation) {
-        if (event.currentTarget.performance.navigation.type === PerformanceNavigationTiming .TYPE_RELOAD) {
-            // The user refreshed the page
-            console.log("Browser refresh button is clicked.");
-        } else if (event.currentTarget.performance.navigation.type === PerformanceNavigationTiming .TYPE_BACK_FORWARD) {
-            // The user clicked the browser's back button
-            console.log("Browser back button is clicked.");
-        }
-    } else {
-        if (event.clientX < 40 && event.clientY < 0) {
-            // The user clicked the browser's back button
-            console.log("Browser back button is clicked.");
-        } else {
-            // The user refreshed the page
-            console.log("Browser refresh button is clicked.");
-        }
-    }
-});
-//  BACK BUTTON END
+
 
 window.addEventListener('load', () => {
   
@@ -144,6 +124,19 @@ window.addEventListener('load', () => {
 
     // SLICED URL BASED ON PREFIX INDEX + 1 INDEX TO GET URL ENDPOINT
     const sliced = split.slice(prefixIndex + 1)
+
+
+    //  BACK BUTTON START
+    if (performance.getEntriesByType("navigation").length > 0) {
+        // Get the PerformanceNavigationTiming object
+        const [navigationTiming] = performance.getEntriesByType("navigation");
+        // Extract and log various timing properties
+     
+        console.log("Type:", navigationTiming.type);
+      } else {
+        console.log("Navigation Timing API not supported by this browser.");
+      }
+    //  BACK BUTTON END
 
 
     // HOME PAGE START
