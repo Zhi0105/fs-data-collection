@@ -78,18 +78,16 @@ const sendAnalyticsData = (data) => {
 
   //  BACK/FORWARD BUTTON START
   window.onpopstate = function(evt) {
-    const newState = evt.state;
-    
-    if (newState === null) {
-        return; // Handle the initial page load case if needed
-    }
-    
-    console.log(newState)
+   // Determine if it's a back or forward action
+   if (evt.state && evt.state.direction === 'forward') {
+    console.log('Forward button pressed');
+    // Handle forward button press
+} else {
+    console.log('Back button pressed');
+    // Handle back button press
+}
 }; 
-
-
-
-history.pushState({}, '');
+history.pushState({ direction: 'forward'  },null,  '');
 
 //  BACK/FORWARD BUTTON END
 window.addEventListener('load', () => {
