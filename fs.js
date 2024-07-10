@@ -76,22 +76,34 @@ const sendAnalyticsData = (data) => {
 
 }
 
-  //  BACK/FORWARD BUTTON START
-  window.onpopstate = function(evt) {
-   // Determine if it's a back or forward action
-   if (evt.state && evt.state.direction === 'forward') {
-    console.log('Forward button pressed');
-    // Handle forward button press
-} else {
-    console.log('Back button pressed');
-    // Handle back button press
-}
-}; 
-history.pushState({ direction: 'forward'  },null,  '');
+let historyStates = [];
 
-//  BACK/FORWARD BUTTON END
+function initializeHistoryState() {
+// Push an initial state with a timestamp
+history.pushState({ timestamp: Date.now() }, '');
+historyStates.push(window.history.state.timestamp);
+}
+
+window.addEventListener('popstate', () => {
+    if (historyStates.length > 0) {
+    const currentState = window.history.state ? window.history.state.timestamp : null;
+    const previousState = historyStates[historyStates.length - 1];
+
+    if (currentState && currentState < previousState) {
+        console.log('Back button was clicked');
+    } else if (currentState && currentState > previousState) {
+        console.log('Forward button was clicked');
+    }
+
+    // Remove the last state since we've moved to a new state
+    historyStates.pop();
+    }
+});
+
 window.addEventListener('load', () => {
-  
+
+    initializeHistoryState();
+
     // SESSION TIME LIMIT START
     let countdownTime = 5 * 60; // 5 minutes in seconds
     const countdownInterval = setInterval(() => {
