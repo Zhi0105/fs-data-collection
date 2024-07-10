@@ -77,9 +77,25 @@ const sendAnalyticsData = (data) => {
 }
 
   //  BACK BUTTON START
-window.onpopstate = function() {
-    console.log("clicked back button");
-}; history.pushState({}, '');
+  window.addEventListener('unload', function(event) {
+    if (event.currentTarget.performance && event.currentTarget.performance.navigation) {
+        if (event.currentTarget.performance.navigation.type === PerformanceNavigationTiming .TYPE_RELOAD) {
+            // The user refreshed the page
+            console.log("Browser refresh button is clicked.");
+        } else if (event.currentTarget.performance.navigation.type === PerformanceNavigationTiming .TYPE_BACK_FORWARD) {
+            // The user clicked the browser's back button
+            console.log("Browser back button is clicked.");
+        }
+    } else {
+        if (event.clientX < 40 && event.clientY < 0) {
+            // The user clicked the browser's back button
+            console.log("Browser back button is clicked.");
+        } else {
+            // The user refreshed the page
+            console.log("Browser refresh button is clicked.");
+        }
+    }
+});
 //  BACK BUTTON END
 
 window.addEventListener('load', () => {
