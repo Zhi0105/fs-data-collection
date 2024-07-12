@@ -129,7 +129,7 @@ window.addEventListener('load', () => {
         const anchor = evt.target.closest('a')
         if(anchor) {
             setTimeout(() => {
-                pushNewState({ page: anchor.href }, "", document.URL)
+                history.pushState({ page: anchor.href }, "", document.URL)
             }, 2000);
         }
     })
