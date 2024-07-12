@@ -148,18 +148,12 @@ window.addEventListener('load', () => {
     const sliced = split.slice(prefixIndex + 1)
 
 
-    // BACK BUTTON START
-    // document.addEventListener('click', (evt) => {
-    //     const anchor = evt.target.closest('a')
-    //     if(anchor) {
-    //         setTimeout(() => {
-    //             history.pushState({ page: anchor.href }, null, "")
-    //         }, 2000);
-    //     }
-    // })
-
-    // BACK BUTTON END
-
+    document.addEventListener('click', (evt) => {
+        const anchor = evt.target.closest('a')
+        if(anchor) {
+            navigate()
+        }
+    })
     //  RELOAD BUTTON START
     if (performance.getEntriesByType("navigation").length > 0) {
         // Get the PerformanceNavigationTiming object
