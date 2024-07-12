@@ -75,6 +75,8 @@ const sendAnalyticsData = (data) => {
 
 
 }
+
+// FORWARD/BACKWARD BUTTON START
 let currentState = 0;
 let states = [0];
 
@@ -99,6 +101,8 @@ window.addEventListener('popstate', (evnt) => {
 });
 
 navigate(); navigate();
+
+// FORWARD/BACKWARD BUTTON END
 
 window.addEventListener('load', () => {
 
@@ -147,13 +151,6 @@ window.addEventListener('load', () => {
     // SLICED URL BASED ON PREFIX INDEX + 1 INDEX TO GET URL ENDPOINT
     const sliced = split.slice(prefixIndex + 1)
 
-
-    document.addEventListener('click', (evt) => {
-        const anchor = evt.target.closest('a')
-        if(anchor) {
-            navigate()
-        }
-    })
     //  RELOAD BUTTON START
     if (performance.getEntriesByType("navigation").length > 0) {
         // Get the PerformanceNavigationTiming object
