@@ -75,6 +75,30 @@ const sendAnalyticsData = (data) => {
 
 
 }
+let currentState = 0;
+let states = [0];
+
+history.replaceState({ state: currentState }, '');
+
+const navigate = () => {
+    currentState++;
+    states.push(currentState);
+    history.pushState({ state: currentState }, '');
+}
+
+window.addEventListener('popstate', (evnt) => {
+    if (evnt.state) {
+        const newState = evnt.state.state;
+        if (newState < currentState) {
+            console.log('Back button was clicked');
+        } else if (newState > currentState) {
+            console.log('Forward button was clicked');
+        }
+        currentState = newState;
+    }
+});
+
+navigate(); navigate();
 
 window.addEventListener('load', () => {
 
@@ -133,14 +157,6 @@ window.addEventListener('load', () => {
     //         }, 2000);
     //     }
     // })
-
-    // window.addEventListener('popstate', function(popstate) {
-    //     console.log('popstate event fired');
-    //     // Check if history.back() was used
-    //     if (popstate.state) {
-    //         console.log('window.history.back() was fired');
-    //     }
-    // });
 
     // BACK BUTTON END
 
