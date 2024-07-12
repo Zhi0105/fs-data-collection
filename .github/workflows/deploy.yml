@@ -6,7 +6,7 @@ on:
       - production
 
 jobs:
-  upload:
+  deployment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -15,11 +15,13 @@ jobs:
           ref: "development"
 
       - name: Replace url to send data to corresponding environment
+        id: replace-api-url
         run: |
           cd $GITHUB_WORKSPACE
           sed -i 's/https:\/\/bi-tools-dev.flwr.ph/https:\/\/bi-tools.flwr.ph/g' fs.js
 
       - name: Create release directory and copy analytics file
+        id: copy-to-release-dir
         run: |
           cd ../
           mkdir release/
@@ -33,3 +35,9 @@ jobs:
           aws_bucket: ${{ secrets.AWS_BUCKET }}
           source_dir: "../release"
           destination_dir: "frontend/js"
+
+      - uses: act10ns/slack@v2.1.0
+        with:
+          status: ${{ job.status }}
+          steps: ${{ toJson(steps) }}
+        if: always()
