@@ -76,48 +76,6 @@ const sendAnalyticsData = (data) => {
 
 }
 
-let stateStack = [];
-let currentIndex = -1;
-
-    // Push new state to history
-    function pushNewState(state) {
-        const newState = { page: state, index: stateStack.length };
-        history.pushState(newState, '', `#${state}`);
-        stateStack.push(newState);
-        currentIndex = newState.index;
-        // document.getElementById('content').innerText = `Current State: ${state}`;
-        console.log('New state pushed:', newState);
-    }
-
-    // Handle popstate event
-    window.addEventListener('popstate', (evt) => {
-        const state = evt.state;
-
-        if (state) {
-            const newIndex = state.index;
-
-            if (newIndex < currentIndex) {
-                console.log('Back button pressed');
-                handleBackButton(state);
-            } else if (newIndex > currentIndex) {
-                console.log('Forward button pressed');
-                handleForwardButton(state);
-            }
-
-            currentIndex = newIndex;
-            document.getElementById('content').innerText = `Current State: ${state.page}`;
-        }
-    });
-
-    // Initial state setup
-    window.onload = () => {
-        const initialState = { page: 'initial', index: 0 };
-        history.replaceState(initialState, '', location.href);
-        stateStack.push(initialState);
-        currentIndex = initialState.index;
-        console.log('Initial state set:', initialState);
-    };
-
 window.addEventListener('load', () => {
 
     // SESSION TIME LIMIT START
@@ -166,15 +124,25 @@ window.addEventListener('load', () => {
     const sliced = split.slice(prefixIndex + 1)
 
 
+    // BACK BUTTON START
     document.addEventListener('click', (evt) => {
         const anchor = evt.target.closest('a')
         if(anchor) {
             setTimeout(() => {
-                pushNewState({ page: anchor.href }, "", anchor.href)
+                pushNewState({ page: anchor.href }, "", document.URL)
             }, 2000);
         }
     })
 
+    window.addEventListener('popstate', function(popstate) {
+        console.log('popstate event fired');
+        // Check if history.back() was used
+        if (popstate.state) {
+            console.log('window.history.back() was fired');
+        }
+    });
+
+    // BACK BUTTON END
 
     //  RELOAD BUTTON START
     if (performance.getEntriesByType("navigation").length > 0) {
