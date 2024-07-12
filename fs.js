@@ -125,22 +125,22 @@ window.addEventListener('load', () => {
 
 
     // BACK BUTTON START
-    document.addEventListener('click', (evt) => {
-        const anchor = evt.target.closest('a')
-        if(anchor) {
-            setTimeout(() => {
-                history.pushState({ page: anchor.href }, null, "")
-            }, 2000);
-        }
-    })
+    // document.addEventListener('click', (evt) => {
+    //     const anchor = evt.target.closest('a')
+    //     if(anchor) {
+    //         setTimeout(() => {
+    //             history.pushState({ page: anchor.href }, null, "")
+    //         }, 2000);
+    //     }
+    // })
 
-    window.addEventListener('popstate', function(popstate) {
-        console.log('popstate event fired');
-        // Check if history.back() was used
-        if (popstate.state) {
-            console.log('window.history.back() was fired');
-        }
-    });
+    // window.addEventListener('popstate', function(popstate) {
+    //     console.log('popstate event fired');
+    //     // Check if history.back() was used
+    //     if (popstate.state) {
+    //         console.log('window.history.back() was fired');
+    //     }
+    // });
 
     // BACK BUTTON END
 
