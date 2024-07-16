@@ -203,9 +203,10 @@ window.addEventListener('load', () => {
         if (selectElement) {
             selectElement.addEventListener('change',(select) => {
                 chpayload.session_id = getCookie("session_analytics_id")
+                chpayload.device_id = getCookie("fs_device_id")
                 chpayload.action_key = 'change_hub'
                 chpayload.hub_id =  select.target.value
-                chpayload.referrer = document.referrer,
+                chpayload.referrer = document.referrer
                 chpayload.url = window.location.href
                 console.log("@CH:", chpayload)
                 sendAnalyticsData(chpayload)
@@ -217,10 +218,11 @@ window.addEventListener('load', () => {
             if (locationOption) {
                 setTimeout(() => {
                     chpayload.session_id = getCookie("session_analytics_id")
+                    chpayload.device_id = getCookie("fs_device_id")
                     chpayload.action_key = 'change_hub'
                     chpayload.hub_id =  getCookie("hub_id") 
                     chpayload.city_id = getCookie("city_id") 
-                    chpayload.referrer = document.referrer,
+                    chpayload.referrer = document.referrer
                     chpayload.url = window.location.href
                     console.log("@CH:", chpayload)
                     sendAnalyticsData(chpayload)
@@ -238,6 +240,7 @@ window.addEventListener('load', () => {
                 if(String(split[split.length - 1]).toLocaleLowerCase() === 'login') { 
                     const payload = {
                         session_id: getCookie("session_analytics_id"),
+                        device_id: getCookie("fs_device_id"),
                         action_key: 'click_login',
                         pixel_back_timestamp: getCurrentDate(),
                         referrer: document.referrer,
@@ -249,6 +252,7 @@ window.addEventListener('load', () => {
                 if(String(split[split.length - 1]).toLocaleLowerCase() === 'register') { 
                     const payload = {
                         session_id: getCookie("session_analytics_id"),
+                        device_id: getCookie("fs_device_id"),
                         action_key: 'click_registration',
                         pixel_back_timestamp: getCurrentDate(),
                         referrer: document.referrer,
@@ -282,6 +286,7 @@ window.addEventListener('load', () => {
                 const data = JSON.parse(divElement.getAttribute('data-page'))
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
+                    device_id: getCookie("fs_device_id"),
                     action_key: 'click_product',
                     price: price,
                     product_id: data?.props.product.id,
@@ -300,6 +305,7 @@ window.addEventListener('load', () => {
         setTimeout(() => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
+                    device_id: getCookie("fs_device_id"),
                     action_key: 'click_my_account',
                     pixel_back_timestamp: getCurrentDate(),
                     referrer: document.referrer,
@@ -315,6 +321,7 @@ window.addEventListener('load', () => {
             setTimeout(() => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
+                    device_id: getCookie("fs_device_id"),
                     action_key: 'click_my_account',
                     pixel_back_timestamp: getCurrentDate(),
                     referrer: document.referrer,
@@ -336,6 +343,7 @@ window.addEventListener('load', () => {
             if(order && email) {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
+                    device_id: getCookie("fs_device_id"),
                     action_key: 'track_order',
                     order_number: Number(order[order.length - 1]),
                     email: email,
@@ -355,6 +363,7 @@ window.addEventListener('load', () => {
             setTimeout(() => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
+                    device_id: getCookie("fs_device_id"),
                     action_key: 'click_category',
                     pixel_back_timestamp: getCurrentDate(),
                     referrer: document.referrer,
@@ -375,6 +384,7 @@ window.addEventListener('load', () => {
                     const data = JSON.parse(divElement.getAttribute('data-page'))
                     const payload = {
                         session_id: getCookie("session_analytics_id"),
+                        device_id: getCookie("fs_device_id"),
                         action_key: 'click_collection',
                         collection_id: data?.props.collection_id,
                         pixel_back_timestamp: getCurrentDate(),
@@ -393,6 +403,7 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             const payload = {
                 session_id: getCookie("session_analytics_id"),
+                device_id: getCookie("fs_device_id"),
                 action_key: 'click_page',
                 pixel_back_timestamp: getCurrentDate(),
                 referrer: document.referrer,
@@ -409,6 +420,7 @@ window.addEventListener('load', () => {
         setTimeout(() => {
             const payload = {
                 session_id: getCookie("session_analytics_id"),
+                device_id: getCookie("fs_device_id"),
                 action_key: 'click_shipping',
                 pixel_back_timestamp: getCurrentDate(),
                 referrer: document.referrer,
@@ -428,6 +440,7 @@ window.addEventListener('load', () => {
                 if(url[url.length - 1].toLowerCase() === 'payment') {
                     const payload = {
                         session_id: getCookie("session_analytics_id"),
+                        device_id: getCookie("fs_device_id"),
                         action_key: 'click_payment',
                         pixel_back_timestamp: getCurrentDate(),
                         referrer: document.referrer,
