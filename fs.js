@@ -42,7 +42,7 @@ const setDeviceID = (str) => {
         if(res) {
             res.json().then(data => {
                 data && setCookie("fs_device_id", data, 5 * 365)
-                data && console.log("@DI:", data)
+                // data && console.log("@DI:", data)
             })
         }
     }).catch(err => {
