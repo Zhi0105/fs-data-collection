@@ -36,18 +36,19 @@ const getCurrentDate = () => {
 const getUserIP =  () => {
     return fetch('https://api.ipify.org?format=json')
 }
-// const encodeString = (str) => {
-//     const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
-//     fetch(url).then(res => {
-//         if(res) {
-//             res.json().then(data => {
-//                 data && setCookie("session_analytics_id", data, 1)
-//             })
-//         }
-//     }).catch(err => {
-//         console.log(err)
-//     })
-// }
+const setDeviceID = (str) => {
+    const url = `https://bi-tools-dev.flwr.ph/api/data-collection/ph/hash?data=${str}`
+    fetch(url).then(res => {
+        if(res) {
+            res.json().then(data => {
+                data && setCookie("fs_device_id", data, 5 * 365)
+                data && console.log("@DI:", data)
+            })
+        }
+    }).catch(err => {
+        console.log(err)
+    })
+}
 const sendAnalyticsData = (data) => {
     const url = 'https://bi-tools-dev.flwr.ph/api/data-collection/ph/store'
 
@@ -125,7 +126,6 @@ window.addEventListener('load', () => {
         // Check if the countdown is finished
         if (countdownTime < 0) {
             clearInterval(countdownInterval);
-            // encodeString(getCurrentDate())
             hashString(getCurrentDate()).then(hashedString => {
                 setCookie("session_analytics_id", hashedString, 1)
             })
@@ -135,6 +135,7 @@ window.addEventListener('load', () => {
     // SESSION TIME LIMIT END
     
     const session_id = getCookie("session_analytics_id")
+    const device_id = getCookie("fs_device_id")
     const current_url_array = []
     const current_uri = window.location.href 
     const split = current_uri.split("/")
@@ -168,8 +169,7 @@ window.addEventListener('load', () => {
     if(!sliced[0]?.length || !sliced?.length) {     
 
     // SESSION START
-        // !session_id && encodeString(getCurrentDate())
-        // !session_id && hashedString && setCookie("session_analytics_id", hashedString, 1)
+        !device_id && setDeviceID(getCurrentDate())
         hashString(getCurrentDate()).then(hashedString => {
             !session_id && setCookie("session_analytics_id", hashedString, 1)
         })
@@ -179,6 +179,7 @@ window.addEventListener('load', () => {
         .then(data => {
             const payload = {
                 session_id: getCookie("session_analytics_id"),
+                device_id: getCookie("fs_device_id"),
                 action_key: 'entrance',
                 page_entrance: 'page',
                 source_id: current_uri.toLowerCase() === 'https://potico.ph/' ? 5 : 1,
