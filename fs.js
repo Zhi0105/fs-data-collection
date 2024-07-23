@@ -278,6 +278,28 @@ window.addEventListener('load', () => {
     }
     // HOME PAGE END
     // PDP START
+
+    document.addEventListener('click', (product_card) => {
+        const price = product_card.target.closest('article').children[2].children[1].firstChild.firstChild.textContent
+        if(price) {
+            const payload = {
+                session_id: getCookie("session_analytics_id"),
+                device_id: getCookie("fs_device_id"),
+                action_key: 'click_product',
+                price: price,
+                pixel_back_timestamp: getCurrentDate(),
+                referrer: document.referrer,
+                url: window.location.href
+            }
+            console.log("@ProductClick:", payload)
+            sendAnalyticsData(payload)
+        }
+        
+        // if(product_click) {
+        //     console.log("product card was clicked!")
+        // }
+    })
+
     if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'product'){
         setTimeout(() => {
             const price = document.querySelector('div[class="justify-self-end text-brand"] span').textContent
@@ -287,18 +309,20 @@ window.addEventListener('load', () => {
                 const payload = {
                     session_id: getCookie("session_analytics_id"),
                     device_id: getCookie("fs_device_id"),
-                    action_key: 'click_product',
+                    action_key: 'product_load',
                     price: price,
                     product_id: data?.props.product.id,
                     pixel_back_timestamp: getCurrentDate(),
                     referrer: document.referrer,
                     url: window.location.href
                 }
-                console.log("@Product:", payload)
+                console.log("@ProductLoad:", payload)
                 sendAnalyticsData(payload)
             }
         }, 1000);
     }
+  
+
     // PDP END
     // MY ACCOUNT START
     if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'my-account'){
