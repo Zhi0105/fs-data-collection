@@ -280,7 +280,7 @@ window.addEventListener('load', () => {
     // PDP START
 
     document.addEventListener('click', (product_card) => {
-        const price = product_card.target.closest('article').children[2].children[1].firstChild.firstChild.textContent
+        const price = product_card.target.closest('article')?.children[2].children[1].firstChild.firstChild.textContent
         if(price) {
             const payload = {
                 session_id: getCookie("session_analytics_id"),
