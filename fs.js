@@ -281,6 +281,7 @@ window.addEventListener('load', () => {
 
     document.addEventListener('click', (product_card) => {
         const price = product_card.target.closest('article')?.children[2].children[1].firstChild.firstChild.textContent
+        console.log('@click_product:', price)
         if(price) {
             const payload = {
                 session_id: getCookie("session_analytics_id"),
@@ -303,6 +304,7 @@ window.addEventListener('load', () => {
     if(sliced[0]?.length  && sliced[0]?.toLowerCase() === 'product'){
         setTimeout(() => {
             const price = document.querySelector('div[class="justify-self-end text-brand"] span').textContent
+            console.log('@product_load:', price)
             const divElement = document.querySelector('#app')
              if(price && divElement){
                 const data = JSON.parse(divElement.getAttribute('data-page'))
